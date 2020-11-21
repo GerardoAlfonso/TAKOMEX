@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = null;
+}
+
+@{ Html.RenderAction("header"); }
+
+<link href="~/Content/css/401.css" rel="stylesheet" />
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h3 id="opps">
+                    Oops!
+                </h3>
+                <h1 id="404">
+                    Error 404
+                </h1>
+                <div class="error-details">
+                    <p>Parece que la pagina a la que intentas acceder no existe</p>
+                    <p>o no esta disponible por el momento.</p>
+                </div>
+                <div class="error-actions">
+                    <a href="~/Home/Index" class="btn btn-primary btn-lg">
+                        <span class="glyphicon glyphicon-home"></span>
+                        Regresar al inicio
+                    </a><a href="#" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Reportar un problema </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@{ Html.RenderAction("footer"); }

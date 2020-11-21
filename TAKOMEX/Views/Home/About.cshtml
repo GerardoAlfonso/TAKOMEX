@@ -1,0 +1,55 @@
+﻿@{
+    Layout = null;
+}
+
+@{ Html.RenderAction("header"); }
+
+<!-- About page-->
+<section class="about" id="about">
+    <div class="container" style="margin-top: 5%; margin-bottom: 5%;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-header wow fadeInDown">
+                    <h1>
+                        The restaurant <small>
+                            A little about us and a breif history of how we
+                            started.
+                        </small>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="row wow fadeInUp">
+            <div class="col-md-4">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12 hidden-sm about-photo">
+                            <div class="image-thumb">
+                                <img src="~/Content/imagenes/TAKOMEX (nav-bar).png" data-mfp-src="img/TAKOMEX.jpg"
+                                     class="img-responsive" alt="logo" style="width: 100%">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <p>
+                    Cras ut viverra eros. Phasellus sollicitudin sapien id luctus tempor. Sed hend rerit
+                    inter dum sagittis. Donec nunc lacus, dapibus nec interdum eget, ultrices eget justo.
+                    Nam purus lacus, efficitur eget laoreet sed, finibus nec neque. Cras eget enim in diam
+                    dapibus sagittis. In massa est, dignissim in libero ac, fringilla ornare mi. Etiam
+                    interdum ligula purus.
+                </p>
+                <br>
+                <p>
+                    Ultrices eget justo. Nam purus lacus, efficitur eget laoreet sed, finibus nec neque.
+                    Cras eget enim in diam dapibus sagittis. In massa est, dignissim in libero ac, fringilla
+                    ornare.
+                </p>
+                <!-- <img src="imagenes/" alt="signature"> -->
+            </div>
+        </div>
+    </div>
+</section>
+
+@{ Html.RenderAction("footer"); }

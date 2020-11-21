@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+
+}
+
+@{ Html.RenderAction("header"); }
+
+<!-- Slider indicadores o carrusel Primera seccion-->
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/Content/ima/slider 1.jpg" class="d-block w-100" alt="pres1">
+        </div>
+        <div class="carousel-item">
+            <img src="~/Content/ima/slider 2.jpg" class="d-block w-100" alt="pres2">
+        </div>
+        <div class="carousel-item">
+            <img src="~/Content/ima/Slider 3.jpg" class="d-block w-100" alt="pres3">
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<!--Segunda seccion de la pagina banners -->
+<main>
+    <section class="altura-a-a-b">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-sm-4 text-center">
+                    <img class="img-fluid rounded float-left" src="~/Content/imagenes/pozole.jpeg" alt="banener 01">
+
+                    <h5>Titulo 01</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+                <div class="col-12 col-sm-4 text-center">
+                    <img class="img-fluid" src="~/Content/imagenes/tacos.jpeg" alt="banener 02">
+                    <h5>Titulo 02</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+                <div class="col-12 col-sm-4 text-center">
+                    <img class="img-fluid" src="~/Content/imagenes/tostadas.jpeg" alt="banener 03">
+                    <h5>Titulo 03</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+            </div>
+    </section>
+
+    <!--Tercera seccion de la pagina de banner-->
+    <section class="altura-a-a-b">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-3 ">
+                    <img class="img-fluid" src="~/Content/imagenes/tacos al pastor.jpeg" alt="Pantalla 01">
+                </div>
+                <div class="col-12 col-sm-3">
+                    <img class="img-fluid" src="~/Content/imagenes/nachos con carne.jpeg" alt="Pantalla 02">
+                </div>
+                <div class="col-12 col-sm-3">
+                    <img class="img-fluid" src="~/Content/imagenes/tacos de birria.jpeg" alt="Pantalla 03">
+                </div>
+                <div class="col-12 col-sm-3">
+                    <img class="img-fluid" src="~/Content/imagenes/tostadas.jpeg" alt="Pantalla 04">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="altura-a-a-b">
+        <div class="container">
+            <div class="row">
+                <div>
+                    <img class="img-fluid" src="~/Content/imagenes/medidas de seguridaf.PNG" " alt="Pantalla 01">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+@{ Html.RenderAction("footer"); }

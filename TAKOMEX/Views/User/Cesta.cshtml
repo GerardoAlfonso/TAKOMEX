@@ -1,0 +1,23 @@
+﻿@model TAKOMEX.Models.UserModel
+
+@{
+    Layout = null;
+}
+
+@{ Html.RenderAction("header"); }
+
+
+@{ 
+    String value = "";
+    if (Request.Cookies["Cookie"] != null)
+    {
+        value = Request.Cookies["Cookie"].Value;
+    }
+    else
+    {
+        value = null;
+        Response.Redirect("Access");
+    }
+}
+
+@{ Html.RenderAction("footer"); }
