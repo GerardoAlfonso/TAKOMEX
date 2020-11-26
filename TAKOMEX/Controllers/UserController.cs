@@ -1,20 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TAKOMEX.Models;
 
 namespace TAKOMEX.Controllers
 {
     public class UserController : Controller
     {
         // GET: User
-        public ActionResult Index()
+        public ActionResult Cesta()
         {
             return View();
         }
-        public ActionResult Cesta()
+        public ActionResult Profile(string estado)
         {
+            string cook = "";
+            try
+            {
+                cook = Request.Cookies["Cookie"].Value;
+            }
+            catch(Exception e)
+            {
+
+            }
+            try
+            {  
+                if (cook == "")
+                {
+                    return View();
+                }
+                else
+                {
+                    var lst = Verify(cook);
+                    if(lst == null)
+                    {
+                        return View();
+                    }else
+                    {
+                        ViewData.Model = lst;
+                        return View();
+                    }
+                    
+                }
+            }
+            catch (Exception e)
+            {
+
+            }         
             return View();
         }
 
@@ -105,6 +140,22 @@ namespace TAKOMEX.Controllers
             catch
             {
                 return View();
+            }
+        }
+
+        public object Verify(string correo)
+        {
+            try
+            {
+                DataBase db = new DataBase();
+                string cook = Request.Cookies["Cookie"].Value;
+                var user = db.Persona.FirstOrDefault(e => e.Correo == correo );
+                //var user = db.sp_l_persona(cook).ToList();
+                return user;
+            }
+            catch (Exception e)
+            {
+                return null;
             }
         }
     }

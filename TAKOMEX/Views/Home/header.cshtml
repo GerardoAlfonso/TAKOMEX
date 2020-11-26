@@ -81,7 +81,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tú</a>
                             <!--Este es el menu si desean cambiarlo quitarlo haganlo borran esto cuando lo vean -->
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Perfil</a>
+                                @Html.ActionLink("Perfil", "Profile", "User", new { estado = 1 }, new { @class = "dropdown-item" })
                                 @Html.ActionLink("Cesta", "Cesta", "User", null, new { @class = "dropdown-item" })
                                 @Html.ActionLink("Cerrar sesión", "Index", "Home", new { estado = 0 }, new { @class = "dropdown-item" })
                             </div>

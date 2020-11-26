@@ -6,6 +6,9 @@
 
 @{ Html.RenderAction("header"); }
 
+
+
+
 <!-- Slider indicadores o carrusel Primera seccion-->
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -36,25 +39,19 @@
 
 <!--Segunda seccion de la pagina banners -->
 <main>
-    <section class="altura-a-a-b">
+    <section class="altura-a-a-b mt-2">
         <div class="container">
             <div class="row">
-                <div class="col-6 col-sm-4 text-center">
-                    <img class="img-fluid rounded float-left" src="~/Content/imagenes/pozole.jpeg" alt="banener 01">
 
-                    <h5>Titulo 01</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                </div>
-                <div class="col-12 col-sm-4 text-center">
-                    <img class="img-fluid" src="~/Content/imagenes/tacos.jpeg" alt="banener 02">
-                    <h5>Titulo 02</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                </div>
-                <div class="col-12 col-sm-4 text-center">
-                    <img class="img-fluid" src="~/Content/imagenes/tostadas.jpeg" alt="banener 03">
-                    <h5>Titulo 03</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                </div>
+                @foreach (var item in Model)
+                {
+                    <div class="col-12 col-sm-4 text-center">
+                        <img class="img-fluid" src="@item.IMG" alt="@item.Nombre">
+                        <h5>@item.Nombre</h5>
+                        <p>@item.Descripcion_corta</p>
+                    </div>
+                }
+
             </div>
     </section>
 

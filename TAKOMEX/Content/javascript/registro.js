@@ -15,23 +15,23 @@ function comprobar(obj)
 $(document).ready(function() {
   $("#form-registro").validate({
     rules: {
-      name: {
+      nombre: {
         required: true,
         minlength: 3,
         maxlength: 25
       },
-      LastName: {
+      apellido: {
         required: true,
         minlength: 3,
         maxlength: 25
       },
-      Phone: {
+      edad: {
         required: true,
         number: true,
-        minlength: 8,
-        maxlength: 15
+        minlength: 1,
+        maxlength: 2
       },
-      email: {
+      correo: {
         required: true,
         email: true,
         maxlength: 67
@@ -43,23 +43,23 @@ $(document).ready(function() {
         }
     },
     messages : {
-      name: {
+      nombre: {
         required: "Debe completar este campo",
         minlength: "Nombre demasiado corto",
         maxlength: "Nombre demasiado largo"
       },
-      LastName: {
+      apellido: {
         required: "Debe completar este campo",
         minlength: "Apellido demasiado corto",
         maxlength: "Apellido demasiado largo"
       },
-      Phone: {
+      edad: {
         required: "Debe completar este campo",
         minlength: "Numero demasiado corto",
         maxlength: "Numero demasiado largo",
         number: "Debe introducir un numero de telefono valido"
       },
-      email: {
+      correo: {
         required: "Debe completar este campo",
         email: "Debe introducir un email valido",
         maxlength: "Direccion de correo demasiado larga"

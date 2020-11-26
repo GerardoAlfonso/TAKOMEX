@@ -84,3 +84,7 @@ C:\Users\gerar\source\repos\TAKOMEX\TAKOMEX\obj\Debug\TAKOMEX.csproj.CoreCompile
 C:\Users\gerar\source\repos\TAKOMEX\TAKOMEX\obj\Debug\TAKOMEX.csproj.CopyComplete
 C:\Users\gerar\source\repos\TAKOMEX\TAKOMEX\obj\Debug\TAKOMEX.dll
 C:\Users\gerar\source\repos\TAKOMEX\TAKOMEX\obj\Debug\TAKOMEX.pdb
+C:\Users\gerar\source\repos\TAKOMEX\TAKOMEX\bin\EntityFramework.dll
+C:\Users\gerar\source\repos\TAKOMEX\TAKOMEX\bin\EntityFramework.SqlServer.dll
+C:\Users\gerar\source\repos\TAKOMEX\TAKOMEX\bin\EntityFramework.xml
+C:\Users\gerar\source\repos\TAKOMEX\TAKOMEX\bin\EntityFramework.SqlServer.xml
