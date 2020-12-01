@@ -8,7 +8,6 @@
 
 
 
-
 <!-- Slider indicadores o carrusel Primera seccion-->
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -42,16 +41,15 @@
     <section class="altura-a-a-b mt-2">
         <div class="container">
             <div class="row">
-
                 @foreach (var item in Model)
                 {
-                    <div class="col-12 col-sm-4 text-center">
-                        <img class="img-fluid" src="@item.IMG" alt="@item.Nombre">
-                        <h5>@item.Nombre</h5>
-                        <p>@item.Descripcion_corta</p>
-                    </div>
+                <div class="col-12 col-sm-4 text-center">
+                    <img class="img-fluid" src="@item.IMG" alt="@item.Nombre">
+                    <h5>@item.Nombre</h5>
+                    <p>@item.Descripcion_corta </p>
+                    @Html.ActionLink("Detalles", "Producto", "Products", new { id = item.idArticulo }, new { @class = "btn btn-secondary" })
+                </div>
                 }
-
             </div>
     </section>
 

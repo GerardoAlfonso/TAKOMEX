@@ -11,10 +11,6 @@ namespace TAKOMEX.Controllers
     public class UserController : Controller
     {
         // GET: User
-        public ActionResult Cesta()
-        {
-            return View();
-        }
         public ActionResult Profile(string estado)
         {
             string cook = "";
@@ -51,6 +47,48 @@ namespace TAKOMEX.Controllers
 
             }         
             return View();
+        }
+        public ActionResult Cesta(int? id)
+        {
+            if(id != null)
+            {
+                List<int> lista = (List<int>)Session["Productos"];
+                lista.Remove(id.GetValueOrDefault());
+                if(lista.Count() == 0)
+                {
+                    Session["Productos"] = null;
+                }
+                else
+                {
+                    Session["Productos"] = lista;
+                }
+            }
+            if(Session["Productos"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                List<int> lista = (List<int>)Session["Productos"];
+                DataBase db = new DataBase();
+                List<Articulos> prod = BuscarProducto(lista);
+                ViewBag.Lista = prod;
+                double total = 0;
+                foreach(var p in prod)
+                {
+                    total += Convert.ToDouble(p.Precio);
+                }
+                ViewBag.Total = total;
+                return View();
+            }
+
+            //return View();
+        }
+        public List<Articulos> BuscarProducto(List<int> id)
+        {
+            DataBase db = new DataBase();
+            var consulta = from Articulos in db.Articulos where id.Contains(Articulos.idArticulo) select Articulos;
+            return consulta.ToList();
         }
 
         public ActionResult header()

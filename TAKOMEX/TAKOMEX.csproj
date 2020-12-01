@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -187,6 +188,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\carrito.css" />
     <Content Include="Content\css\profile.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -290,12 +292,16 @@
     <Content Include="Views\Home\footer.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Registro.cshtml" />
-    <Content Include="Views\User\Cesta.cshtml" />
     <Content Include="Views\User\footer.cshtml" />
     <Content Include="Views\User\Access.cshtml" />
     <Content Include="Views\User\Lost.cshtml" />
     <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\User\header.cshtml" />
+    <Content Include="Views\User\Cesta.cshtml" />
+    <Content Include="Views\Products\Products.cshtml" />
+    <Content Include="Views\Products\Producto.cshtml" />
+    <Content Include="Views\Products\footer.cshtml" />
+    <Content Include="Views\Products\header.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

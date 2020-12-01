@@ -30,6 +30,7 @@ namespace TAKOMEX.Controllers
                 cookie.Expires = DateTime.Now.AddDays(-1);
                 cookie.Value = string.Empty;
                 Response.Cookies.Add(cookie);
+                Session["Productos"] = null;
                 return RedirectToAction("Index");
             }else
             {
@@ -87,6 +88,7 @@ namespace TAKOMEX.Controllers
                 }
                 else
                 {
+                    ViewBag.Menssaje = "Correo o contraseña incorrectos";
                     return View("Login");
                 }
 
