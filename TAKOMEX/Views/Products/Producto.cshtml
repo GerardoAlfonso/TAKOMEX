@@ -31,10 +31,8 @@
                     <td><label for="">Categoria</label></td>
                     <td><label for="">@item.IdCategoria</label></td>
                 </tr>
-                <tr>
-                    @Html.ActionLink("Agregar al carrito", "AgregarCarrito", "Products", new { id = item.idArticulo }, new { @class = "btn btn-secondary" })
-                </tr>
             </table>
+            @Html.ActionLink("Agregar al carrito", "AgregarCarrito", "Products", new { id = item.idArticulo }, new { @class = "btn btn-secondary" })
         </div>
         <!-- End Detalles producto -->
     </div>

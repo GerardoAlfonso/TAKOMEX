@@ -84,7 +84,7 @@
                     </div>
                     <div class="col-4">
                         $
-                        @if(@ViewBag.Total != null)
+                        @if (@ViewBag.Total != null)
                         {
                             @ViewBag.Total
                         }
@@ -113,10 +113,10 @@
                     </div>
                 </div>
             </div>
-            <button class="mt-3 btn btn-primary">Procesar pago</button>
+            @Html.ActionLink("Procesar Pago", "ProcesarPago", "User",null, new { @class = "btn btn-primary" })
             <div class="row">
                 <div class="col mt-2 mb-2" style="text-align: center;">
-                    <a href="">Continuar comprando</a>
+                    <a href="javascript:history.back()" class="btn btn-link btn-sm w-100">← Continúa Comprando</a>
                 </div>
             </div>
         </div>

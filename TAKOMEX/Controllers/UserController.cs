@@ -84,6 +84,14 @@ namespace TAKOMEX.Controllers
 
             //return View();
         }
+        public ActionResult ProcesarPago()
+        {
+            return View();
+        }
+        public ActionResult RevisarCompra()
+        {
+            return View();
+        }
         public List<Articulos> BuscarProducto(List<int> id)
         {
             DataBase db = new DataBase();
