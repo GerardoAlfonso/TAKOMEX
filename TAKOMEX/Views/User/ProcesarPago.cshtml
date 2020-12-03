@@ -3,57 +3,81 @@
 @{
     Layout = null;
 }
+
 @{ Html.RenderAction("header"); }
 
+@{
+    String value = "";
+    if (Request.Cookies["Cookie"] != null)
+    {
+        value = Request.Cookies["Cookie"].Value;
+    }
+    else
+    {
+        value = null;
+        Response.Redirect("Access");
+    }
+}
+
+<script src="~/Content/javascript/ProcesarPago.js"></script>
+<style>
+    .error {
+        border-color: red;
+    }
+</style>
+
+
 <div class="container mb-5 mt-5">
-    <h3>Proceso de Pago</h3>
-    <hr>
-    <div class="row">
-        <div class="col-8">
-            <p style="font-size: x-large;">Contacto</p>
-            <div class="row">
-                <div class="col">
-                    <label for="">E-Mail *</label>
-                    <input type="text" class="w-100">
+    <form action="RevisarCompra" method="post" id="form-ProcesarPago">
+        <h3>Proceso de Pago</h3>
+        <hr>
+        <div class="row">
+            <div class="col-8">
+                <p style="font-size: x-large;">Contacto</p>
+                <div class="row">
+                    <div class="col">
+                        <label for="">E-Mail *</label>
+                        <input type="text" class="w-100" name="Email" value="@ViewBag.User.Correo">
+                    </div>
+                    <div class="col">
+                        <label for="">Teléfono</label>
+                        <input type="text" class="w-100" name="Telefono">
+                    </div>
                 </div>
-                <div class="col">
-                    <label for="">Teléfono</label>
-                    <input type="text" class="w-100">
+                <p style="font-size: x-large;">Dirección de envío</p>
+                <div class="row">
+                    <div class="col">
+                        <label for="">Dirección *</label>
+                        <input type="text" class="w-100" name="Direccion">
+                    </div>
+                    <div class="col">
+                        <label for="">Dirección de facturacion *</label>
+                        <input type="text" class="w-100" name="facturacion">
+                    </div>
                 </div>
             </div>
-            <p style="font-size: x-large;">Dirección de envío</p>
-            <div class="row">
-                <div class="col">
-                    <label for="">Dirección *</label>
-                    <input type="text" class="w-100">
+            <div class="col-4 mt-5">
+                <div class="card">
+                    <h5 class="card-header">Opciones de pago</h5>
+                    <div class="card-body">
+                        <input type="checkbox" disabled> <label for="">Tranferencia Bancaria (No disponible)</label><br>
+                        <input type="checkbox"> <label for="">Efectivo</label>
+                    </div>
                 </div>
-                <div class="col">
-                    <label for="">Ciudad *</label>
-                    <input type="text" class="w-100">
+                <div class="card mt-3">
+                    <h5 class="card-header">Opciones de envío</h5>
+                    <div class="card-body">
+                        <input type="checkbox"> <label for="">Envio Regular</label><br>
+                        <input type="checkbox"> <label for="">Envio Gratis</label><br>
+                        <input type="checkbox"> <label for="">Recoger en restaurante</label><br>
+                    </div>
                 </div>
+                <button type="submit" class="btn btn-primary w-100 mt-3">Revision del pedido</button>
+                <a href="javascript:history.back()" class="btn btn-link btn-sm w-100">← Continúa Comprando</a>
             </div>
         </div>
-        <div class="col-4 mt-5">
-            <div class="card">
-                <h5 class="card-header">Opciones de pago</h5>
-                <div class="card-body">
-                    <input type="checkbox" disabled> <label for="">Tranferencia Bancaria (No disponible)</label><br>
-                    <input type="checkbox"> <label for="">Efectivo</label>
-                </div>
-            </div>
-            <div class="card mt-3">
-                <h5 class="card-header">Opciones de envío</h5>
-                <div class="card-body">
-                    <input type="checkbox"> <label for="">Envio Regular</label><br>
-                    <input type="checkbox"> <label for="">Envio Gratis</label><br>
-                    <input type="checkbox"> <label for="">Recoger en restaurante</label><br>
-                </div>
-            </div>
-            @Html.ActionLink("Revision del pedido", "RevisarCompra", "User", null, new { @class = "btn btn-primary w-100 mt-3" })
-            <a href="javascript:history.back()" class="btn btn-link btn-sm w-100">← Continúa Comprando</a>
-        </div>
-    </div>
-    <p>* campos obligatorios</p>
+        <p>* Campos obligatorios</p>
+    </form>
 </div>
 
 

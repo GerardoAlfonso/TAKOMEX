@@ -3,7 +3,21 @@
 @{
     Layout = null;
 }
+
 @{ Html.RenderAction("header"); }
+
+@{
+    String value = "";
+    if (Request.Cookies["Cookie"] != null)
+    {
+        value = Request.Cookies["Cookie"].Value;
+    }
+    else
+    {
+        value = null;
+        Response.Redirect("Access");
+    }
+}
 
 <div class="container mb-5 mt-5">
     <h3>Revisar Compra</h3>
@@ -14,7 +28,6 @@
                 <table class="table table-bordered mt-3 ml-3 mr-3">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col"><div style="width: 125px;">Producto       </div></th>
                             <th scope="col"><div style="width: 115px;">Precio Unitario</div></th>
                             <th scope="col"><div style="width: 50px;">Cantidad        </div></th>
@@ -22,39 +35,37 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>mdo</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>fat</td>
-                            <td>asdf</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry the Bird</td>
-                            <td>twitter</td>
-                            <td>asdf</td>
-                            <td>asdf</td>
-                        </tr>
+                        @if (Session["Productos"] == null)
+                        {
+                            <tr>
+                                <td colspan="4">No hay productos para mostrar</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            foreach (var item in ViewBag.Lista)
+                            {
+                                <tr>
+                                    <td>@item.Nombre</td>
+                                    <td>$@item.Precio</td>
+                                    <td>1</td>
+                                    <td>$@item.Precio</td>
+                                </tr>
+                            }
+                        }
+
                     </tbody>
                 </table>
             </div>
             <div class="row mt-3">
                 <div class="col-6">
                     <div class="card">
-                        <div class="card-body">Direccion de Envío <p>asd</p></div>
+                        <div class="card-body">Direccion de Envío <p>@Session["direccion"]</p></div>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="card">
-                        <div class="card-body">Dirección de Facturación <p>asd</p></div>
+                        <div class="card-body">Dirección de Facturación <p>@Session["facturacion"]</p></div>
                     </div>
                 </div>
             </div>
@@ -67,19 +78,31 @@
                         <div class="row justify-content-between">
                             <div class="card-header w-100 d-flex flex-row">
                                 <div class="col">Envio </div>
-                                <div class="col">$123.00 </div>
+                                <div class="col">$0.00 </div>
                             </div>
                         </div>
                         <div class="row justify-content-between">
                             <div class="card-body w-100 d-flex flex-row">
-                                <div class="col">Total </div>
-                                <div class="col">$123.00 </div>
+                                @if (@ViewBag.Total != null)
+                                {
+                                    <div class="col">Total </div>
+                                    <div class="col">$@ViewBag.Total</div>
+                                }
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary w-100 mt-3">Confirmar pedido</button>
+            @if (Session["Productos"] == null)
+            {
+                <button class="btn btn-primary w-100 mt-3" disabled>Confirmar pedido</button>
+            }
+            else
+            {
+                <button class="btn btn-primary w-100 mt-3">Confirmar pedido</button>
+            }
+
         </div>
     </div>
 </div>

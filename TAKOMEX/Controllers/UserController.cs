@@ -10,6 +10,9 @@ namespace TAKOMEX.Controllers
 {
     public class UserController : Controller
     {
+        object lista ;
+        double total = 0;
+        DataBase db;
         // GET: User
         public ActionResult Profile(string estado)
         {
@@ -69,34 +72,106 @@ namespace TAKOMEX.Controllers
             }
             else
             {
-                List<int> lista = (List<int>)Session["Productos"];
-                DataBase db = new DataBase();
-                List<Articulos> prod = BuscarProducto(lista);
-                ViewBag.Lista = prod;
-                double total = 0;
-                foreach(var p in prod)
+                ObtenerRegistrosCarrito();
+                ViewBag.Lista = lista;
+                ViewBag.Total = total;
+                lista = "";
+                total = 0;
+                return View();
+            }
+        }
+        public ActionResult ProcesarPago(string Restaurante, string TipoPago)
+        {
+            try
+            {
+                if (Restaurante != "" && TipoPago != "")
+                {
+                    Session["Restaurante"] = Restaurante;
+                    Session["TipoPago"] = TipoPago;
+                    ViewBag.User = Verify(Request.Cookies["Cookie"].Value);
+                }
+                else
+                {
+                    return RedirectToAction("Cesta");
+                }
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                ViewBag.User = "Error: " + ex;
+                return View();
+            }
+        }
+        public ActionResult RevisarCompra(string email, string telefono, string direccion, string facturacion)
+        {
+            try
+            {
+                Session["email"] = email;
+                Session["telefono"] = telefono;
+                Session["direccion"] = direccion;
+                Session["facturacion"] = facturacion;
+
+                ObtenerRegistrosCarrito();
+                ViewBag.Lista = lista;
+                ViewBag.Total = total;
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Lista = "Error: "+ ex;
+                ViewBag.Total = "0.00";
+                return View();
+            }
+        }
+        //Recuperar los Articulos usando los Id almacenados en la session productos
+        public void ObtenerRegistrosCarrito()
+        {
+            try
+            {
+                List<int> list = (List<int>)Session["Productos"];
+                db = new DataBase();
+                List<Articulos> prod = BuscarProducto(list);
+                lista = prod;
+                foreach (var p in prod)
                 {
                     total += Convert.ToDouble(p.Precio);
                 }
-                ViewBag.Total = total;
-                return View();
+            }catch(Exception ex)
+            {
+                lista = "Error: " + ex;
+                total = 0;
             }
 
-            //return View();
         }
-        public ActionResult ProcesarPago()
-        {
-            return View();
-        }
-        public ActionResult RevisarCompra()
-        {
-            return View();
-        }
+        //Consultar los articulos en la BD usando una lista de Id
         public List<Articulos> BuscarProducto(List<int> id)
         {
-            DataBase db = new DataBase();
-            var consulta = from Articulos in db.Articulos where id.Contains(Articulos.idArticulo) select Articulos;
-            return consulta.ToList();
+            try
+            {
+                db = new DataBase();
+                var consulta = from Articulos in db.Articulos where id.Contains(Articulos.idArticulo) select Articulos;
+                return consulta.ToList();
+            }catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        //Obtener los datos del usuario que ha iniciado sesion
+        public object Verify(string correo)
+        {
+            try
+            {
+                db = new DataBase();
+                string cook = Request.Cookies["Cookie"].Value;
+                var user = db.Persona.FirstOrDefault(e => e.Correo == correo);
+                return user;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public ActionResult header()
@@ -186,22 +261,6 @@ namespace TAKOMEX.Controllers
             catch
             {
                 return View();
-            }
-        }
-
-        public object Verify(string correo)
-        {
-            try
-            {
-                DataBase db = new DataBase();
-                string cook = Request.Cookies["Cookie"].Value;
-                var user = db.Persona.FirstOrDefault(e => e.Correo == correo );
-                //var user = db.sp_l_persona(cook).ToList();
-                return user;
-            }
-            catch (Exception e)
-            {
-                return null;
             }
         }
     }
