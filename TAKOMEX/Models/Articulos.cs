@@ -24,5 +24,7 @@ namespace TAKOMEX.Models
         public Nullable<int> Estado { get; set; }
         public Nullable<System.DateTime> Created_at { get; set; }
         public Nullable<System.DateTime> Updated_at { get; set; }
+        public int Cantidad { get; internal set; }
+        public double SubTotal { get; internal set; }
     }
 }

@@ -163,6 +163,13 @@
     <FunctionImport Name="sp_l_persona" ReturnType="Collection(Models.sp_l_persona_Result)">
       <Parameter Name="Correo" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="sp_i_venta">
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="Detalles" Mode="In" Type="String" />
+      <Parameter Name="Importe" Mode="In" Type="String" />
+      <Parameter Name="IVA" Mode="In" Type="String" />
+      <Parameter Name="Total" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <Association Name="FK__Inventari__IdCat__47DBAE45">
     <End Type="Models.Categorias" Role="Categorias" Multiplicity="1" />

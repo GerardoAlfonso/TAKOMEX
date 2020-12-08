@@ -30,12 +30,35 @@ namespace TAKOMEX.Controllers
                     return View();
                 }
             }
-            catch (Exception e)
+            catch (Exception )
             {
 
             }
             return View();
+        }
+        public ActionResult Products(string param)
+        {
+            try
+            {
+                if(param == null || param == "")
+                {
+                    ViewBag.Productos = GetProducts(param);
+                }
+                else
+                {
+                    ViewBag.Productos = GetProducts(param);
+                    ViewBag.Mensaje = param;
+                }
 
+            }catch (Exception)
+            {
+
+            }
+            return View();
+        }
+        public ActionResult OK()
+        {
+            return View("OK");
         }
         public ActionResult header()
         {
@@ -128,7 +151,7 @@ namespace TAKOMEX.Controllers
                 idCategoria = art.IdCategoria;
                 return art;
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 return null;
             }
@@ -144,33 +167,64 @@ namespace TAKOMEX.Controllers
                 //Obtener 3 registros aleatorios de la tabla articulos
                 var rec = db.Articulos.OrderByDescending(e => Guid.NewGuid()).Take(3);
                 return rec;
-            }catch (Exception e)
+            }catch (Exception )
             {
                 return null;
             }
         }
-        public ActionResult AgregarCarrito(int? id)
+        public object GetProducts(string param)
         {
-            if(id != null)
+            DataBase db = new DataBase();
+            if (param != "" && param != null)
+            {
+                var consulta = from Articulos in db.Articulos where Articulos.Nombre.Contains(param) select Articulos;
+                consulta.ToList();
+                //var consulta = db.Articulos.Where(e => e.Nombre == param).ToList();
+                return consulta;
+            }
+            else
+            {
+                var products = db.Articulos.Take(25).ToList();
+                return products;
+            }
+        }
+        public ActionResult AgregarCarrito(int? id, string cantidad)
+        {
+            if (id != null && cantidad != null && cantidad != "")
             {
                 List<int> codigoProductos;
+                List<int> Cantidad;
+                
 
                 if (Session["Productos"] == null)
                 {
                     codigoProductos = new List<int>();
+                    Cantidad = new List<int>();
                 }
                 else
                 {
                     codigoProductos = Session["Productos"] as List<int>;
+                    Cantidad = Session["Cantidad"] as List<int>;
                 }
                 codigoProductos.Add(id.Value);
+                Cantidad.Add(Convert.ToInt32(cantidad));
                 Session["Productos"] = codigoProductos;
+                Session["Cantidad"] = Cantidad;
                 ViewBag.Mensaje = "Productos en el carrito: " + codigoProductos.Count();
             }
             ViewBag.Carrito = Session["Productos"];
+            if(cantidad != null)
+            {
+
+            }else
+            {
+
+            }
+
             DataBase db = new DataBase();
 
             List<Articulos> prod = db.Articulos.ToList();
+            
             return RedirectToAction("Cesta", "User");
             //return View(prod);
         }

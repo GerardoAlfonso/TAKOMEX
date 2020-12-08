@@ -123,5 +123,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_i_venta" FunctionName="Models.Store.sp_i_venta" />
   </EntityContainerMapping>
 </Mapping>

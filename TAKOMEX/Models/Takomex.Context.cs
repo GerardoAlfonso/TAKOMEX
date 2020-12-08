@@ -171,5 +171,30 @@ namespace TAKOMEX.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_l_persona_Result>("sp_l_persona", correoParameter);
         }
+    
+        public virtual int sp_i_venta(Nullable<int> idUsuario, string detalles, string importe, string iVA, string total)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("idUsuario", idUsuario) :
+                new ObjectParameter("idUsuario", typeof(int));
+    
+            var detallesParameter = detalles != null ?
+                new ObjectParameter("Detalles", detalles) :
+                new ObjectParameter("Detalles", typeof(string));
+    
+            var importeParameter = importe != null ?
+                new ObjectParameter("Importe", importe) :
+                new ObjectParameter("Importe", typeof(string));
+    
+            var iVAParameter = iVA != null ?
+                new ObjectParameter("IVA", iVA) :
+                new ObjectParameter("IVA", typeof(string));
+    
+            var totalParameter = total != null ?
+                new ObjectParameter("Total", total) :
+                new ObjectParameter("Total", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_i_venta", idUsuarioParameter, detallesParameter, importeParameter, iVAParameter, totalParameter);
+        }
     }
 }

@@ -11,17 +11,18 @@ namespace TAKOMEX.Controllers
     public class UserController : Controller
     {
         object lista ;
+        List<Persona> listaL;
         double total = 0;
         DataBase db;
         // GET: User
-        public ActionResult Profile(string estado)
+        public new ActionResult Profile(string estado)
         {
             string cook = "";
             try
             {
                 cook = Request.Cookies["Cookie"].Value;
             }
-            catch(Exception e)
+            catch(Exception )
             {
 
             }
@@ -45,7 +46,7 @@ namespace TAKOMEX.Controllers
                     
                 }
             }
-            catch (Exception e)
+            catch (Exception )
             {
 
             }         
@@ -56,14 +57,17 @@ namespace TAKOMEX.Controllers
             if(id != null)
             {
                 List<int> lista = (List<int>)Session["Productos"];
+                List<int> cantidades = (List<int>)Session["Cantidad"];
                 lista.Remove(id.GetValueOrDefault());
-                if(lista.Count() == 0)
+                if(lista.Count() == 0 && cantidades.Count() == 0)
                 {
                     Session["Productos"] = null;
+                    Session["Cantidades"] = null;
                 }
                 else
                 {
                     Session["Productos"] = lista;
+                    Session["Cantidad"] = cantidades;
                 }
             }
             if(Session["Productos"] == null)
@@ -73,6 +77,7 @@ namespace TAKOMEX.Controllers
             else
             {
                 ObtenerRegistrosCarrito();
+                
                 ViewBag.Lista = lista;
                 ViewBag.Total = total;
                 lista = "";
@@ -114,6 +119,7 @@ namespace TAKOMEX.Controllers
 
                 ObtenerRegistrosCarrito();
                 ViewBag.Lista = lista;
+                Session["lista"] = lista;
                 ViewBag.Total = total;
 
                 return View();
@@ -131,19 +137,26 @@ namespace TAKOMEX.Controllers
             try
             {
                 List<int> list = (List<int>)Session["Productos"];
-                db = new DataBase();
+                List<int> cant = (List<int>)Session["Cantidad"];
                 List<Articulos> prod = BuscarProducto(list);
                 lista = prod;
+                double subtotal = 0;
+                int contador = 0;
                 foreach (var p in prod)
                 {
-                    total += Convert.ToDouble(p.Precio);
+                    subtotal = Convert.ToDouble(p.Precio) * cant[contador];
+                    p.Cantidad = cant[contador];
+                    contador++;
+                    p.SubTotal = subtotal;
+                    total += Convert.ToDouble(subtotal);
                 }
+                contador = 0;
+                
             }catch(Exception ex)
             {
                 lista = "Error: " + ex;
                 total = 0;
             }
-
         }
         //Consultar los articulos en la BD usando una lista de Id
         public List<Articulos> BuscarProducto(List<int> id)
@@ -153,7 +166,7 @@ namespace TAKOMEX.Controllers
                 db = new DataBase();
                 var consulta = from Articulos in db.Articulos where id.Contains(Articulos.idArticulo) select Articulos;
                 return consulta.ToList();
-            }catch (Exception ex)
+            }catch (Exception )
             {
                 return null;
             }
@@ -168,10 +181,54 @@ namespace TAKOMEX.Controllers
                 var user = db.Persona.FirstOrDefault(e => e.Correo == correo);
                 return user;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return null;
             }
+        }
+        public ActionResult RegistrarPedido(string total)
+        {
+            DataBase db = new DataBase();
+            //var user = Verify(Request.Cookies["Cookie"].Value);
+            Persona p = new Persona();
+            p = (Persona)Verify(Request.Cookies["Cookie"].Value);
+
+            List<int> list = (List<int>)Session["Productos"];
+            List<int> cant = (List<int>)Session["Cantidad"];
+            List<Articulos> prod = BuscarProducto(list);
+            String detalles = "";
+            double subtotal = 0;
+            int contador = 0;
+            if(prod.Count() == 1)
+            {
+                foreach (var item in prod)
+                {
+                    detalles += cant[contador] + ": " + item.Nombre;
+                }
+            }
+            else
+            {
+                foreach (var item in prod)
+                {
+                    if(contador == prod.Count()-1)
+                    {
+                        detalles += cant[contador] + ": " + item.Nombre;
+                    }else
+                    {
+                        detalles += cant[contador] + ": " + item.Nombre + ", ";
+                    }
+                    contador++;
+                }
+            }
+            contador = 0;
+            double iva = Convert.ToDouble(total) * 0.13;
+            string idUsuario = Convert.ToString(p.IdPersona);
+
+            db.sp_i_venta(Convert.ToInt32(idUsuario), detalles, Convert.ToString(Convert.ToDouble(total) - iva) , Convert.ToString(iva), total );
+            Session.Clear();
+            //Session.Abandon();
+            Session["Compra"] = "OK";
+            return RedirectToAction("OK" , "Products");
         }
 
         public ActionResult header()

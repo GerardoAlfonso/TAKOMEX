@@ -137,6 +137,13 @@
   <Function Name="sp_i_usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idPersona" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_i_venta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+    <Parameter Name="Detalles" Type="varchar" Mode="In" />
+    <Parameter Name="Importe" Type="varchar" Mode="In" />
+    <Parameter Name="IVA" Type="varchar" Mode="In" />
+    <Parameter Name="Total" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_l_persona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Correo" Type="varchar" Mode="In" />
   </Function>

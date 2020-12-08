@@ -43,7 +43,7 @@
                         </tr>
                         @if (Session["Productos"] == null)
                         {
-                            <tr>
+                            <tr> 
                                 <td colspan="4">No hay productos para mostrar</td>
                             </tr>
                         }
@@ -54,8 +54,8 @@
                                 <tr>
                                     <td>@item.Nombre</td>
                                     <td>$@item.Precio</td>
-                                    <td>1</td>
-                                    <td>$@item.Precio</td>
+                                    <td>@item.Cantidad</td>
+                                    <td>$@item.SubTotal</td>
                                     <td>@Html.ActionLink("X", "Cesta", "User", new { id = item.idArticulo }, new { @class = "btn btn-secondary" })</td>
                                 </tr>
                             }

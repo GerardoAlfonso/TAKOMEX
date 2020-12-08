@@ -305,6 +305,7 @@
     <Content Include="Views\Products\header.cshtml" />
     <Content Include="Views\User\ProcesarPago.cshtml" />
     <Content Include="Views\User\RevisarCompra.cshtml" />
+    <Content Include="Views\Products\OK.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,6 +7,58 @@
 @{ Html.RenderAction("header"); }
 
 
+<div class="container">
+    @using (Html.BeginForm("Products", "Products", FormMethod.Post))
+    {
+    <div class="header mt-5 mb-5 d-flex">
+        @{ if (@ViewBag.Mensaje != null)
+            {
+                <input type="text" name="param" placeholder="Encuentra tu comida mexicana favorita..." class="w-75 mr-3 form-control" value="@ViewBag.Mensaje">
+            }
+            else
+            {
+                <input type="text" name="param" placeholder="Encuentra tu comida mexicana favorita..." class="w-75 mr-3 form-control" value="">
+            }
+         }
+
+        <input type="submit" value="Buscar" class="btn btn-secondary">
+    </div>
+    }
+        <div class="row">
+            <div class="col-2">
+                <nav class="nav flex-column">
+                    @Html.ActionLink("Todo", "Products", "Products", new { param = "" }, new { @class = "nav-link" })
+                    <a class="nav-link" href="#">Platos</a>
+                    <a class="nav-link" href="#">Bebidas</a>
+                </nav>
+            </div>
+            <div class="col-10">
+                <div>
+                    <h3>Productos</h3>
+                    @if (ViewBag.Mensaje != null)
+                    {
+                        <h6 class="text-muted">Mostrando resultados para la busqueda: @ViewBag.Mensaje</h6>
+                    }
+                </div>
+                <div class="row mt-4 mb-5">
+
+                    @foreach (var item in ViewBag.Productos)
+                    {
+                        <div class="col-12 col-sm-4 text-center">
+                            <img class="img-fluid" src="@item.IMG" alt="@item.Nombre">
+                            <div class="card-body">
+                                <h5>@item.Nombre</h5>
+                                <p>@item.Descripcion_corta </p>
+                            </div>
+                            <div class="card-footer">
+                                @Html.ActionLink("Detalles", "Producto", "Products", new { id = item.idArticulo }, new { @class = "btn btn-success" })
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 @{ Html.RenderAction("footer"); }
