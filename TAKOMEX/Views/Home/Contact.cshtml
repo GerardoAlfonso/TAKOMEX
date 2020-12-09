@@ -1,17 +1,50 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+@{ Html.RenderAction("header"); }
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<style>
+    .header {
+        color: #36A0FF;
+        font-size: 27px;
+        padding: 10px;
+    }
+
+    .bigicon {
+        font-size: 35px;
+        color: #36A0FF;
+    }
+</style>
+    
+
+<div class="container">
+    <center>
+        <div class="row">
+            <div class="col-md-12 mt-5 mb-5">
+                    @using (Html.BeginForm("GuardarMensaje", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        <h2 class="text-center header">Contactanos</h2>
+                        <div class="form-group">
+                            <div class="col-md-8">
+                                <input id="Asunto" name="Asunto" type="text" placeholder="Asunto..." class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-8">
+                                <textarea class="form-control" id="message" name="message" placeholder="Escribe tu mensaje..." rows="7"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-8 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+                            </div>
+                        </div>
+
+                    }
+            </div>
+        </div>
+    </center>
+</div>
+
+@{ Html.RenderAction("footer"); }

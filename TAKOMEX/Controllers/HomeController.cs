@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Linq;
 using TAKOMEX.Models;
 
 namespace TAKOMEX.Controllers
@@ -17,7 +15,7 @@ namespace TAKOMEX.Controllers
             var ListaRecomendaciones = db.Articulos.ToList();
 
 
-
+                
             ViewData["Articulos"] = ListaRecomendaciones;
 
 
@@ -49,6 +47,21 @@ namespace TAKOMEX.Controllers
 
             return View();
         }
+        public ActionResult GuardarMensaje(string asunto, string message )
+        {
+            DataBase db = new DataBase();
+            Persona p = new Persona();
+            p = GetUser(Request.Cookies["Cookie"].Value);
+
+            db.sp_i_mensaje(p.IdPersona ,asunto, message, 0);
+            Session["Mensaje"] = "OK";
+            return RedirectToAction("OK" , "Home");
+
+        }
+        public ActionResult OK()
+        {
+            return View("OK");
+        }
         public ActionResult header()
         {
             return View();
@@ -62,6 +75,22 @@ namespace TAKOMEX.Controllers
         public ActionResult Login()
         {
             return View();
+        }
+
+        public Persona GetUser(string correo)
+        {
+            try
+            {
+                DataBase db = new DataBase();
+                Persona p = new Persona();
+                p = db.Persona.FirstOrDefault(e => e.Correo == correo);                
+                
+                return p;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         [HttpPost]
@@ -173,7 +202,7 @@ namespace TAKOMEX.Controllers
             try
             {
                 user = db.Persona.FirstOrDefault(e => e.Correo == correo);
-            }catch (Exception e)
+            }catch (Exception)
             {
                 user = null;
             }

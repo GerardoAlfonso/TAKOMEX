@@ -15,6 +15,8 @@
         <EntityTypeShape EntityType="Models.Ventas" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="Models.idPersona" ManuallyRouted="false" />
         <AssociationConnector Association="Models.FK__Inventari__IdCat__47DBAE45" />
+        <EntityTypeShape EntityType="Models.Mensajes" Width="1.5" PointX="5.375" PointY="7.75" />
+        <EntityTypeShape EntityType="Models.sysdiagrams" Width="1.5" PointX="7.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

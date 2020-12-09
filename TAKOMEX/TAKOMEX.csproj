@@ -146,6 +146,9 @@
     <Compile Include="Models\Inventario.cs">
       <DependentUpon>Takomex.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Mensajes.cs">
+      <DependentUpon>Takomex.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ModelArticulos.cs" />
     <Compile Include="Models\ModelLogin.cs" />
     <Compile Include="Models\ModelRegistro.cs" />
@@ -155,7 +158,16 @@
     <Compile Include="Models\Roles.cs">
       <DependentUpon>Takomex.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Takomex.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Takomex.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_l_persona_Result.cs">
+      <DependentUpon>Takomex.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>Takomex.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Takomex.Context.cs">
@@ -306,6 +318,7 @@
     <Content Include="Views\User\ProcesarPago.cshtml" />
     <Content Include="Views\User\RevisarCompra.cshtml" />
     <Content Include="Views\Products\OK.cshtml" />
+    <Content Include="Views\Home\OK.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
