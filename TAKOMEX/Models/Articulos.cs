@@ -26,5 +26,6 @@ namespace TAKOMEX.Models
         public Nullable<System.DateTime> Updated_at { get; set; }
         public int Cantidad { get; internal set; }
         public double SubTotal { get; internal set; }
+        public string NombreCategoria { get; internal set; }
     }
 }

@@ -128,7 +128,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MensajesDetalles.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -201,7 +203,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\carrito.css" />
+    <Content Include="Content\css\admin\estilosmensajes.css" />
     <Content Include="Content\css\profile.css" />
+    <Content Include="Content\javascript\admin\mensajes.js" />
     <Content Include="Content\javascript\ProcesarPago.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -319,6 +323,15 @@
     <Content Include="Views\User\RevisarCompra.cshtml" />
     <Content Include="Views\Products\OK.cshtml" />
     <Content Include="Views\Home\OK.cshtml" />
+    <Content Include="Views\Admin\Mensajes.cshtml" />
+    <Content Include="Views\Admin\footer.cshtml" />
+    <Content Include="Views\Admin\header.cshtml" />
+    <Content Include="Views\Admin\ContenidoMensaje.cshtml" />
+    <Content Include="Views\Admin\Usuarios.cshtml" />
+    <Content Include="Views\Admin\DetallesUsuario.cshtml" />
+    <Content Include="Views\Admin\Access.cshtml" />
+    <Content Include="Views\Admin\Productos.cshtml" />
+    <Content Include="Views\Admin\DetallesProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

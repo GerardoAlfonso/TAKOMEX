@@ -1,0 +1,106 @@
+﻿
+@{
+    Layout = null;
+}
+@{
+    String value = "";
+    if (Request.Cookies["Cookie"] != null)
+    {
+        try
+        {
+            if (Session["Rol"].ToString() == "1")
+            {
+                value = Request.Cookies["Cookie"].Value;
+            }
+            else
+            {
+                value = null;
+                Response.Redirect("Access");
+            }
+        }
+        catch (Exception)
+        {
+            Response.Redirect("Login");
+        }
+    }
+    else
+    {
+        value = null;
+        Response.Redirect("Access");
+    }
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DetallesUsuario</title>
+</head>
+<body>
+    <div>
+    </div>
+</body>
+</html>
+@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+
+}
+
+@{ Html.RenderAction("header"); }
+
+<link href="~/Content/css/admin/estilosmensajes.css" rel="stylesheet" />
+<script src="~/Content/javascript/admin/mensajes.js"></script>
+
+<!--Navegacion -->
+<div class="var">
+    <div class="navegacion">
+        <nav class="nav flex-column">
+            <a class="nav-link" href="~/Admin/Mensajes">Mensajes</a>
+            <a class="nav-link" href="#">Usuarios</a>
+            <a class="nav-link" href="#">Productos</a>
+        </nav>
+    </div>
+    <div class="contenido">
+        <div class="header">
+            <p>Detalles del Usuario</p>
+        </div>
+        @foreach (var item in ViewBag.Persona)
+        {
+            <div class="form-group">
+                <div class="box-mensaje d-flex">
+                    <p class="font-weight-bold">Cargo: </p>&nbsp; <p class="font-weight-normal mr-2">@item.NombreRol </p>
+                </div>
+                <div class="box-mensaje d-flex">
+                    <p class="font-weight-bold">Nombre: </p>&nbsp; <p class="font-weight-normal mr-2">@item.Nombre </p>
+                </div>
+                <div class="box-mensaje d-flex">
+                    <p class="font-weight-bold">Apellido: </p>&nbsp; <p class="font-weight-normal mr-2">@item.Apellido </p>
+                </div>
+                <div class="box-mensaje d-flex">
+                    <p class="font-weight-bold">Edad: </p>&nbsp; <p class="font-weight-normal mr-2">@item.Edad </p>
+                </div>
+                <div class="box-mensaje d-flex">
+                    <p class="font-weight-bold">Correo: </p>&nbsp; <p class="font-weight-normal mr-2">@item.Correo </p>
+                </div>
+                <div class="box-mensaje d-flex">
+                    <p class="font-weight-bold">Sexo: </p>&nbsp; <p class="font-weight-normal mr-2">@item.Sexo </p>
+                </div>
+                <div class="box-mensaje d-flex">
+                    <p class="font-weight-bold">Fecha de creacion: </p>&nbsp; <p class="font-weight-normal mr-2">@item.Created_at </p>
+                </div>
+                <div class="box-mensaje d-flex">
+                    <p class="font-weight-bold">Ultima modificacion: </p>&nbsp; <p class="font-weight-normal mr-2">@item.Updated_at </p>
+                </div>
+            </div>
+            <div>
+                @Html.ActionLink("Desactivar usuario", "DesactivarUsuario", new { id = item.IdPersona }, new { @class = "btn btn-danger" })
+            </div>
+        }
+        <a href="javascript:history.back()" class="btn btn-link btn-sm w-75">← Regresar a la bandeja de entrada</a>
+    </div>
+</div>
+
+@{ Html.RenderAction("footer"); }

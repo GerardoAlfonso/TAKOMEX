@@ -30,10 +30,6 @@
     <!-- Este es el css que se puede editar-->
     <link rel="stylesheet" href="~/Content/css/estilos.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-    <script src="~/Content/javascript/ProcesarPago.js" charset="utf-8"></script>
-
     <title> Restaurante TAKOMEXS</title>
 </head>
 
@@ -53,25 +49,14 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="~/Home/Index">Inicio <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
-                        <!--Este es el menu si desean cambiarlo quitarlo haganlo borran esto cuando lo vean -->
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="Entradas.html">Entradas</a>
-                            <a class="dropdown-item" href="Tacos.html">Tacos</a>
-                            <a class="dropdown-item" href="Burritos.html">Burritos</a>
-                            <a class="dropdown-item" href="Tortas.html">Tortas</a>
-                            <a class="dropdown-item" href="PE.html">Parriladas y Especialidades</a>
-                            <a class="dropdown-item" href="Combos.html">Combos Familiares</a>
-                            <a class="dropdown-item" href="Takos.html">TaKos Kid</a>
-                            <a class="dropdown-item" href="Bebidas.html">Bebidas</a>
-                        </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Products/Products">Productos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="~/Home/About">Quienes Somos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Contactos.html">Contactenos</a>
+                        <a class="nav-link" href="~/Home/Contact">Contactenos</a>
                     </li>
                     @if (value == null)
                     {
@@ -94,8 +79,8 @@
                 </ul>
 
                 <!--<form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button></form>-->
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button></form>-->
 
                 <li>
                     <img class="iconos-redes-header" src="~/Content/ima/Logo fb.png" alt="Facebook" style="width: 32px;">

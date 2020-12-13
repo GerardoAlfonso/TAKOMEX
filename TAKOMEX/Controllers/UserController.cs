@@ -17,6 +17,7 @@ namespace TAKOMEX.Controllers
         // GET: User
         public new ActionResult Profile(string estado)
         {
+            ValidarSesion();
             string cook = "";
             try
             {
@@ -54,6 +55,7 @@ namespace TAKOMEX.Controllers
         }
         public ActionResult Cesta(int? id)
         {
+            ValidarSesion();
             if(id != null)
             {
                 List<int> lista = (List<int>)Session["Productos"];
@@ -87,6 +89,7 @@ namespace TAKOMEX.Controllers
         }
         public ActionResult ProcesarPago(string Restaurante, string TipoPago)
         {
+            ValidarSesion();
             try
             {
                 if (Restaurante != "" && TipoPago != "")
@@ -110,6 +113,7 @@ namespace TAKOMEX.Controllers
         }
         public ActionResult RevisarCompra(string email, string telefono, string direccion, string facturacion)
         {
+            ValidarSesion();
             try
             {
                 Session["email"] = email;
@@ -318,6 +322,26 @@ namespace TAKOMEX.Controllers
             catch
             {
                 return View();
+            }
+        }
+        public void ValidarSesion()
+        {
+            if (Session["Rol"] == null)
+            {
+                try
+                {
+                    if (Request.Cookies["Cookie"].Name != null)
+                    {
+                        var cookie = new HttpCookie(Request.Cookies["Cookie"].Name);
+                        cookie.Expires = DateTime.Now.AddDays(-1);
+                        cookie.Value = string.Empty;
+                        Response.Cookies.Add(cookie);
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
             }
         }
     }

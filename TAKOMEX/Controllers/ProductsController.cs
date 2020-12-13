@@ -14,7 +14,6 @@ namespace TAKOMEX.Controllers
         // GET: Products
         public ActionResult Producto(int id)
         {
-            
             try
             {
                 var lst = VerifyProduct(id);
@@ -140,6 +139,7 @@ namespace TAKOMEX.Controllers
                 return View();
             }
         }
+
         public object VerifyProduct(int id)
         {
             try

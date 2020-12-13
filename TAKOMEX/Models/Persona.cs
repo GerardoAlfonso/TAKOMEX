@@ -25,5 +25,6 @@ namespace TAKOMEX.Models
         public int Estado { get; set; }
         public System.DateTime Created_at { get; set; }
         public System.DateTime Updated_at { get; set; }
+        public string NombreRol { get; internal set; }
     }
 }

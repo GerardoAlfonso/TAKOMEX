@@ -20,7 +20,7 @@
       <PropertyRef Name="idCategoria" />
     </Key>
     <Property Name="idCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="NombreCategoria" Type="varchar" MaxLength="150" Nullable="false" />
     <Property Name="Estado" Type="int" Nullable="false" />
     <Property Name="Created_at" Type="datetime" Nullable="false" />
     <Property Name="Updated_at" Type="datetime" Nullable="false" />
@@ -75,7 +75,7 @@
       <PropertyRef Name="idRol" />
     </Key>
     <Property Name="idRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="NombreRol" Type="varchar" MaxLength="150" Nullable="false" />
     <Property Name="Created_at" Type="datetime" Nullable="false" />
     <Property Name="Updated_at" Type="datetime" Nullable="false" />
   </EntityType>

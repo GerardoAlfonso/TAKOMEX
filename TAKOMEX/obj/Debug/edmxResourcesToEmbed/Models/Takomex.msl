@@ -20,8 +20,8 @@
     <EntitySetMapping Name="Categorias">
       <EntityTypeMapping TypeName="Models.Categorias">
         <MappingFragment StoreEntitySet="Categorias">
+          <ScalarProperty Name="NombreCategoria" ColumnName="NombreCategoria" />
           <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Estado" ColumnName="Estado" />
           <ScalarProperty Name="Created_at" ColumnName="Created_at" />
           <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
@@ -68,8 +68,8 @@
     <EntitySetMapping Name="Roles">
       <EntityTypeMapping TypeName="Models.Roles">
         <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
           <ScalarProperty Name="idRol" ColumnName="idRol" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Created_at" ColumnName="Created_at" />
           <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
         </MappingFragment>

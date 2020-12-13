@@ -20,11 +20,11 @@
       <PropertyRef Name="idCategoria" />
     </Key>
     <Property Name="idCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Estado" Type="Int32" Nullable="false" />
     <Property Name="Created_at" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Updated_at" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Inventario" Relationship="Models.FK__Inventari__IdCat__47DBAE45" FromRole="Categorias" ToRole="Inventario" />
+    <Property Name="NombreCategoria" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Empleado">
     <Key>
@@ -68,9 +68,9 @@
       <PropertyRef Name="idRol" />
     </Key>
     <Property Name="idRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Created_at" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Updated_at" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NombreRol" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Usuario">
     <Key>

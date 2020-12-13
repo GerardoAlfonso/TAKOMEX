@@ -25,7 +25,7 @@
             <PropertyRef Name="idCategoria" />
           </Key>
           <Property Name="idCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="NombreCategoria" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="Estado" Type="int" Nullable="false" />
           <Property Name="Created_at" Type="datetime" Nullable="false" />
           <Property Name="Updated_at" Type="datetime" Nullable="false" />
@@ -80,7 +80,7 @@
             <PropertyRef Name="idRol" />
           </Key>
           <Property Name="idRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="NombreRol" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="Created_at" Type="datetime" Nullable="false" />
           <Property Name="Updated_at" Type="datetime" Nullable="false" />
         </EntityType>
@@ -272,11 +272,11 @@
             <PropertyRef Name="idCategoria" />
           </Key>
           <Property Name="idCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Created_at" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Updated_at" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Inventario" Relationship="Models.FK__Inventari__IdCat__47DBAE45" FromRole="Categorias" ToRole="Inventario" />
+          <Property Name="NombreCategoria" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
@@ -320,9 +320,9 @@
             <PropertyRef Name="idRol" />
           </Key>
           <Property Name="idRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Created_at" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Updated_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NombreRol" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -547,8 +547,8 @@
           <EntitySetMapping Name="Categorias">
             <EntityTypeMapping TypeName="Models.Categorias">
               <MappingFragment StoreEntitySet="Categorias">
+                <ScalarProperty Name="NombreCategoria" ColumnName="NombreCategoria" />
                 <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Created_at" ColumnName="Created_at" />
                 <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
@@ -595,8 +595,8 @@
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="Models.Roles">
               <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
                 <ScalarProperty Name="idRol" ColumnName="idRol" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Created_at" ColumnName="Created_at" />
                 <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
               </MappingFragment>

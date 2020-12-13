@@ -7,7 +7,17 @@
 @{
     if (Request.Cookies["Cookie"] != null)
     {
-        Response.Redirect("Index");
+        if(Session["Rol"] != null)
+        {
+            if (Session["Rol"].ToString() == "1")
+            {
+                Response.Redirect("~/Admin/Mensajes");
+            }
+            else
+            {
+                Response.Redirect("Index");
+            }
+        }
     }
 }
 
@@ -42,9 +52,15 @@
     <div class="home">
         <img src="~/Content/imagenes/TAKOMEX (nav-bar).png" alt="" id="logo" onclick="location.href='indexprincipal.html';" value="Go to Home">
     </div>
-    @if (ViewBag.Menssaje != null)
+    @if (ViewBag.Mensaje != null)
     {
-        <p>@ViewBag.Menssaje</p>
+        <div class="alert alert-danger w-50 container" role="alert">
+            @ViewBag.Mensaje
+        </div>
+    }
+    else
+    {
+
     }
     <div class="box-1">
         <div class="box-2">

@@ -12,30 +12,53 @@ namespace TAKOMEX.Controllers
         public ActionResult Index(String estado)
         {
             DataBase db = new DataBase();
-            var ListaRecomendaciones = db.Articulos.ToList();
+            var ListaRecomendaciones = db.Articulos.ToList().Take(6);
+            if (Session["Rol"] == null)
+            {
+                ValidarSesion();
+            }
 
-
-                
             ViewData["Articulos"] = ListaRecomendaciones;
-
 
             if (estado == null)
             {
                 return View(ListaRecomendaciones);
             }else if (estado == "0")
             {
-                var cookie = new HttpCookie(Request.Cookies["Cookie"].Name);
-                cookie.Expires = DateTime.Now.AddDays(-1);
-                cookie.Value = string.Empty;
-                Response.Cookies.Add(cookie);
                 Session["Productos"] = null;
+                try
+                {
+                    if (Request.Cookies["Cookie"].Name != null)
+                    {
+                        var cookie = new HttpCookie(Request.Cookies["Cookie"].Name);
+                        cookie.Expires = DateTime.Now.AddDays(-1);
+                        cookie.Value = string.Empty;
+                        Response.Cookies.Add(cookie);
+                    }
+                } catch (Exception) { }
                 return RedirectToAction("Index");
             }else
             {
                 return View(ListaRecomendaciones);
             }
         }
+        public void ValidarSesion()
+        {
+            try
+            {
+                if (Request.Cookies["Cookie"].Name != null)
+                {
+                    var cookie = new HttpCookie(Request.Cookies["Cookie"].Name);
+                    cookie.Expires = DateTime.Now.AddDays(-1);
+                    cookie.Value = string.Empty;
+                    Response.Cookies.Add(cookie);
+                }
+            }
+            catch (Exception)
+            {
 
+            }
+        }
         public ActionResult About()
         {
             return View();
@@ -56,7 +79,6 @@ namespace TAKOMEX.Controllers
             db.sp_i_mensaje(p.IdPersona ,asunto, message, 0);
             Session["Mensaje"] = "OK";
             return RedirectToAction("OK" , "Home");
-
         }
         public ActionResult OK()
         {
@@ -99,29 +121,43 @@ namespace TAKOMEX.Controllers
             if (!string.IsNullOrEmpty(cemail) && !string.IsNullOrEmpty(password))
             {
                 DataBase db = new DataBase();
+                ViewBag.Mensaje = null;
                 var user = db.Persona.FirstOrDefault(e => e.Correo == cemail && e.Contraseña == password);
                 //User Found
                 if (user != null)
                 {
-                    if (Request.Cookies["Cookie"] != null)
+                    if(user.Estado == 1)
                     {
+                        if (Request.Cookies["Cookie"] != null)
+                        {
 
-                    }
-                    else
+                        }
+                        else
+                        {
+                            HttpCookie cook = new HttpCookie("Cookie", user.Correo);
+                            cook.Expires = DateTime.Now.AddMinutes(30);
+                            Session["Rol"] = user.idRol;
+                            Response.Cookies.Add(cook);
+                        }
+                        if (user.idRol == 4)
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else
+                        {
+                            return RedirectToAction("Mensajes", "Admin");
+                        }
+                    }else
                     {
-                        HttpCookie cook = new HttpCookie("Cookie", user.Correo);
-                        cook.Expires = DateTime.Now.AddMinutes(30);
-                        Response.Cookies.Add(cook);
+                        ViewBag.Mensaje = "La cuenta a la que intentas acceder se encuentra deshabilitada, ponte en contacto con los administradores del sistema.";
+                        return View("Login");
                     }
-                    return RedirectToAction("Index");
                 }
                 else
                 {
-                    ViewBag.Menssaje = "Correo o contraseña incorrectos";
+                    ViewBag.Mensaje = "Correo o contraseña incorrectos";
                     return View("Login");
                 }
-
-
             }
             else
             {
@@ -146,7 +182,7 @@ namespace TAKOMEX.Controllers
                 }else
                 {
                     DataBase db = new DataBase();
-                    db.sp_i_Personas(1, nombre, apellido, Convert.ToInt32(edad), correo, sexo, password, 1);
+                    db.sp_i_Personas(1, nombre, apellido, Convert.ToInt32(edad), correo, sexo, password, 4);
 
                     var user = db.Persona.FirstOrDefault(e => e.Correo == correo && e.Contraseña == password);
                     //User Found

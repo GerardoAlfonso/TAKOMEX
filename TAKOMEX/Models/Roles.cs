@@ -15,8 +15,8 @@ namespace TAKOMEX.Models
     public partial class Roles
     {
         public int idRol { get; set; }
-        public string Nombre { get; set; }
         public System.DateTime Created_at { get; set; }
         public System.DateTime Updated_at { get; set; }
+        public string NombreRol { get; set; }
     }
 }
