@@ -1,0 +1,114 @@
+﻿@model TAKOMEX.Models.Articulos
+
+
+@{
+    Layout = null;
+}
+@{
+    String value = "";
+    if (Request.Cookies["Cookie"] != null)
+    {
+        try
+        {
+            if (Session["Rol"].ToString() == "1")
+            {
+                value = Request.Cookies["Cookie"].Value;
+            }
+            else
+            {
+                value = null;
+                Response.Redirect("Access");
+            }
+        }
+        catch (Exception)
+        {
+            Response.Redirect("Login");
+        }
+    }
+    else
+    {
+        value = null;
+        Response.Redirect("Access");
+    }
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DetallesUsuario</title>
+</head>
+<body>
+    <div>
+    </div>
+</body>
+</html>
+@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+
+}
+
+@{ Html.RenderAction("header"); }
+
+<link href="~/Content/css/admin/estilosmensajes.css" rel="stylesheet" />
+<script src="~/Content/javascript/admin/mensajes.js"></script>
+
+<!--Navegacion -->
+<div class="var">
+    <div class="navegacion">
+        <nav class="nav flex-column">
+            <a class="nav-link" href="~/Admin/Mensajes">Mensajes</a>
+            <a class="nav-link" href="#">Usuarios</a>
+            <a class="nav-link" href="#">Productos</a>
+        </nav>
+    </div>
+    <div class="contenido">
+        <div class="header">
+            <p>Detalles del Articulo</p>
+        </div>
+        @foreach (var item in ViewBag.Producto)
+        {
+            <div class="form-group">
+                <div class="box-mensaje d-flex">
+                    <p class="font-weight-bold">Categoria: </p>&nbsp; <p class="font-weight-normal mr-2">@item.NombreCategoria </p>
+                </div>
+                                <div class="box-mensaje d-flex">
+                    <p class="font-weight-bold">IdArticulo: </p>&nbsp; <p class="font-weight-normal mr-2">@item.idArticulo </p>
+                </div>
+                <div class="box-mensaje d-flex">
+                    <p class="font-weight-bold">Nombre: </p>&nbsp; <p class="font-weight-normal mr-2">@item.Nombre </p>
+                </div>
+                <div class="box-mensaje d-flex">
+                    <p class="font-weight-bold">Descripcion corta: </p>&nbsp; <p class="font-weight-normal mr-2">@item.Descripcion_corta </p>
+                </div>
+                <div class="box-mensaje d-flex">
+                    <p class="font-weight-bold">Descripcion larga: </p>&nbsp; <p class="font-weight-normal mr-2">@item.Descripcion_larga </p>
+                </div>
+                <div class="box-mensaje d-flex">
+                    <p class="font-weight-bold">Imagen: </p>&nbsp; <p class="font-weight-normal mr-2">@item.IMG </p>
+                </div>
+                <div class="box-mensaje d-flex">
+                    <p class="font-weight-bold">Precio: </p>&nbsp; <p class="font-weight-normal mr-2">@item.Precio </p>
+                </div>
+                                <div class="box-mensaje d-flex">
+                    <p class="font-weight-bold">Estado: </p>&nbsp; <p class="font-weight-normal mr-2">@item.Estado </p>
+                </div>
+                <div class="box-mensaje d-flex">
+                    <p class="font-weight-bold">Fecha de creacion: </p>&nbsp; <p class="font-weight-normal mr-2">@item.Created_at </p>
+                </div>
+                <div class="box-mensaje d-flex">
+                    <p class="font-weight-bold">Ultima modificacion: </p>&nbsp; <p class="font-weight-normal mr-2">@item.Updated_at </p>
+                </div>
+            </div>
+            <div>
+                
+            </div>
+        }
+        <a href="javascript:history.back()" class="btn btn-link btn-sm w-75">← Regresar a la lista de productos</a>
+    </div>
+</div>
+
+@{ Html.RenderAction("footer"); }

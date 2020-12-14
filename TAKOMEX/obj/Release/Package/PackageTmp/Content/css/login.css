@@ -1,0 +1,23 @@
+*{
+    font-family: Fontawesome, "Open Sans", Verdana, Sans-serif;
+}
+.box-1 {
+  height: 100%;
+  /*IMPORTANTE*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-2 {
+  width: 25%;
+  margin-top: ;
+}
+#logo
+{
+  width: 20%;
+  cursor: pointer;
+}
+.home{
+  margin-top: 10%;
+}

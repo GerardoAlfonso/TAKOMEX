@@ -1,0 +1,59 @@
+﻿@model TAKOMEX.Models.Articulos
+
+@{
+    Layout = null;
+}
+
+@{ Html.RenderAction("header"); }
+
+@{
+    String value = "";
+    if (Request.Cookies["Cookie"] != null)
+    {
+        value = Request.Cookies["Cookie"].Value;
+    }
+    else
+    {
+        value = null;
+        Response.Redirect("~/User/Access");
+    }
+    string status = Convert.ToString(Session["Mensaje"]);
+}
+
+    <div class="container">
+        <center>
+            <div class="row">
+                <div class="col-md-12 mt-5 mb-5">
+                    <div class="error-template mt-5 mb-5">
+                        @if (status == "OK")
+                        {
+                            <h3 class="text-muted mt-5 mb-5">¡Proceso realizado con exito!</h3>
+                            <h5 class="text-muted mb-5">Gracias por sus comentarios intentaremos comunicarnos lo antes posible</h5>
+                            <div class="error-actions">
+                                <a href="~/Home/Index" class="btn btn-primary btn-lg">
+                                    <span class="glyphicon glyphicon-home"></span>
+                                    Regresar al inicio
+                                </a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="error-details">
+                                <h3 class="text-muted">¡Parece que ocurrio un error, por favor intentalo mas tarde!</h3>
+                            </div>
+                            <div class="error-actions">
+                                <a href="~/Home/Index" class="btn btn-primary btn-lg">
+                                    <span class="glyphicon glyphicon-home"></span>
+                                    Regresar al inicio
+                                </a><a href="#" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Reportar un problema </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </center>
+    </div>
+
+
+
+@{ Html.RenderAction("footer"); }

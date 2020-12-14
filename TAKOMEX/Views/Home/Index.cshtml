@@ -43,19 +43,19 @@
             <div class="row">
                 @foreach (var item in Model)
                 {
-                <div class="col-12 col-sm-4 text-center">
-                    <img class="img-fluid" src="@item.IMG" alt="@item.Nombre">
-                    <h5>@item.Nombre</h5>
-                    <p>@item.Descripcion_corta </p>
-                    @Html.ActionLink("Detalles", "Producto", "Products", new { id = item.idArticulo }, new { @class = "btn btn-secondary" })
-                </div>
+                    <div class="col-12 col-sm-4 text-center">
+                        <img class="img-fluid" src="@item.IMG" alt="@item.Nombre">
+                        <h5>@item.Nombre</h5>
+                        <p>@item.Descripcion_corta </p>
+                        @Html.ActionLink("Detalles", "Producto", "Products", new { id = item.idArticulo }, new { @class = "btn btn-secondary" })
+                    </div>
                 }
             </div>
         </div>
-    </section> 
+    </section>
 
     <!--Tercera seccion de la pagina de banner-->
-    
+
     <section class="altura-a-a-b">
         <div class="container">
             <div class="row">
@@ -68,5 +68,19 @@
 
 </main>
 
+<br />
+<br />
 
+<br />
+<br />
+<br />
+<br />
+
+<br />
+<br />
+<br />
+<br />
+
+<br />
+<br />
 @{ Html.RenderAction("footer"); }

@@ -1,0 +1,167 @@
+﻿@model TAKOMEX.Models.Persona
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+
+}
+
+@{ Html.RenderAction("header"); }
+
+@{
+    String value = "";
+    if (Request.Cookies["Cookie"] != null)
+    {
+        try
+        {
+            if (Session["Rol"].ToString() == "1")
+            {
+                value = Request.Cookies["Cookie"].Value;
+            }
+            else
+            {
+                value = null;
+                Response.Redirect("Access");
+            }
+        }
+        catch (Exception)
+        {
+            Response.Redirect("Login");
+        }
+    }
+    else
+    {
+        value = null;
+        Response.Redirect("Access");
+    }
+}
+
+
+
+<link href="~/Content/css/admin/estilosmensajes.css" rel="stylesheet" />
+<script src="~/Content/javascript/admin/mensajes.js"></script>
+
+<!--Navegacion -->
+<div class="var">
+    <div class="navegacion">
+        <nav class="nav flex-column">
+            <a class="nav-link" href="~/Admin/Mensajes">Mensajes</a>
+            <a class="nav-link" href="~/Admin/Usuarios">Usuarios</a>
+            <a class="nav-link" href="~/Admin/Productos">Productos</a>
+        </nav>
+    </div>
+    <div class="contenido">
+        <div class="header">
+            <p>Mensajes recientes</p>
+        </div>
+        @if (ViewBag.Mensaje != null)
+        {
+            <div class="alert alert-success w-75" role="alert">
+                @ViewBag.Mensaje
+            </div>
+        }
+        else if (ViewBag.Mensaje == "1")
+        {
+            <div class="alert alert-danger w-75" role="alert">
+                @ViewBag.Mensaje
+            </div>
+        }
+        else
+        {
+
+        }
+
+        <table class="table t">
+            <style>
+                table th:nth-child(1) {
+                    width: 10%;
+                }
+
+                table th:nth-child(4) {
+                    width: 5%;
+                }
+
+                table th:nth-child(6) {
+                    width: 5%;
+                }
+            </style>
+            <thead>
+                <tr>
+                    <th class="">Rol</th>
+                    <th class="">Nombre</th>
+                    <th class="">Apellido</th>
+                    <th class="">Edad</th>
+                    <th>Correo</th>
+                    <th>Sexo</th>
+                    <th>Created_at</th>
+                    <th>Updated_at</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @using (Html.BeginForm("UpdateMensaje", "Admin", FormMethod.Post))
+                {
+                    foreach (var item in ViewBag.Personas)
+                    {
+                        if (ViewBag.Active != null)
+                        {
+                            var correo = "";
+                            if (item.Correo.Length >= 21)
+                            {
+                                correo = String.Concat(@item.Correo.Substring(0, 18).ToString(), "...");
+                            }
+                            else
+                            {
+                                correo = @item.Correo;
+                            }
+
+                            <tr class="" onclick="LeerMensaje(this , 'hola')">
+                                <td>@item.NombreRol</td>
+                                <td>@item.Nombre</td>
+                                <td>@item.Apellido</td>
+                                <td>@item.Edad</td>
+                                <td>@correo</td>
+                                <td>@item.Sexo</td>
+                                <td>@item.Created_at</td>
+                                <td>@item.Updated_at</td>
+                                <td>@Html.ActionLink("Editar", "DetallesUsuario", new { id = item.IdPersona })</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            if (item.Estado == 1)
+                            {
+                                var correo = "";
+                                if (item.Correo.Length >= 21)
+                                {
+                                    correo = String.Concat(@item.Correo.Substring(0, 18).ToString(), "...");
+                                }
+                                else
+                                {
+                                    correo = @item.Correo;
+                                }
+
+                                <tr class="" onclick="LeerMensaje(this , 'hola')">
+                                    <td>@item.NombreRol</td>
+                                    <td>@item.Nombre</td>
+                                    <td>@item.Apellido</td>
+                                    <td>@item.Edad</td>
+                                    <td>@correo</td>
+                                    <td>@item.Sexo</td>
+                                    <td>@item.Created_at</td>
+                                    <td>@item.Updated_at</td>
+                                    <td>@Html.ActionLink("Editar", "DetallesUsuario", new { id = item.IdPersona })</td>
+                                </tr>
+                            }
+                        }
+
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+@{ Html.RenderAction("footer"); }

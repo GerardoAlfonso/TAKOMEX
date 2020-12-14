@@ -1,0 +1,34 @@
+﻿@charset "UTF-8";
+.alturas-a-a-b {
+    padding: 100px 0;
+}
+
+
+/* Para el logo*/
+
+.logotipo {
+    width: 125px;
+    padding: 10px 0;
+}
+
+/*Para las redes sociales iconos*/
+
+.iconos-redes-header {
+    width: 20px;
+    margin: 10px 5px;
+}
+
+footer {
+    background-color: #000000;
+    padding: 100px 0;
+    text-align: center;
+}
+
+footer .logotipo-footer {
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+footer p {
+    color: #ffffff;
+}

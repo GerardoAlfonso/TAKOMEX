@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+
+}
+
+@{ Html.RenderAction("header"); }
+
+@{
+    String value = "";
+    if (Request.Cookies["Cookie"] != null)
+    {
+        try
+        {
+            if (Session["Rol"].ToString() == "1")
+            {
+                value = Request.Cookies["Cookie"].Value;
+            }
+            else
+            {
+                value = null;
+                Response.Redirect("Access");
+            }
+        }catch(Exception)
+        {
+            Response.Redirect("Login");
+        }
+    }
+    else
+    {
+        value = null;
+        Response.Redirect("Access");
+    }
+}
+
+
+<link href="~/Content/css/admin/estilosmensajes.css" rel="stylesheet" />
+<script src="~/Content/javascript/admin/mensajes.js"></script>
+
+<!--Navegacion -->
+<div class="var">
+    <div class="navegacion">
+        <nav class="nav flex-column">
+            <a class="nav-link" href="~/Admin/Mensajes">Mensajes</a>
+            <a class="nav-link" href="~/Admin/Usuarios">Usuarios</a>
+            <a class="nav-link" href="~/Admin/Productos">Productos</a>
+        </nav>
+    </div>
+    <div class="contenido">
+        <div class="header">
+            <p>Mensajes recientes</p>
+        </div>
+        <table class="table t">
+            <style>
+                table th:nth-child(1) {
+                    width: 25%;
+                }
+
+                tablr th:nth-child(2) {
+                    width: 25%;
+                }
+
+                tablr th:nth-child(2) {
+                    width: 50%;
+                }
+            </style>
+            <thead>
+                <tr>
+                    <th class="font-weight-bold"><div style="width: 10%;">Remitente</div></th>
+                    <th class="font-weight-normal"><div style="width: 10%;">Asunto</div></th>
+                    <th class="font-weight-light"><div style="width: 75%;">Mensaje</div></th>
+                    <th class="font-weight-light"><div style="width: 75%;">Fecha</div></th>
+                </tr>
+            </thead>
+            <tbody>
+                @using (Html.BeginForm("UpdateMensaje", "Admin", FormMethod.Post))
+                {
+                    foreach (var item in ViewBag.Mensajes)
+                    {
+                        if (item.Estado == 0)
+                        {
+                            <tr class="new mensaje" onclick="LeerMensaje(this , 'hola')">
+                                <div class="">
+                                    <td> @Html.ActionLink($"{item.Correo}", "ContenidoMensaje", new { id = item.IdMensaje }, new { onclick = "LeerMensaje(this , 'hola')" }) </td>
+                                    <td> @Html.ActionLink($"{item.Asunto}", "ContenidoMensaje", new { id = item.IdMensaje }, new { onclick = "LeerMensaje(this , 'hola')" }) </td>
+                                    <td> @Html.ActionLink($"{(item.Mensaje.Length > 27 ? item.Mensaje.Substring(0, 27) : item.Mensaje) }...", "ContenidoMensaje", new { id = item.IdMensaje }, new { onclick = "LeerMensaje(this , 'hola')" }) </td>
+                                    <td> @Html.ActionLink($"{item.Created_at}", "ContenidoMensaje", new { id = item.IdMensaje }, new { onclick = "LeerMensaje(this , 'hola')" }) </td>
+                                </div>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr class="mensaje" onclick="LeerMensaje(this , 'hola')">
+                                <div class="">
+                                    <td> @Html.ActionLink($"{item.Correo}", "ContenidoMensaje", new { id = item.IdMensaje }, new { onclick = "LeerMensaje(this , 'hola')" }) </td>
+                                    <td> @Html.ActionLink($"{item.Asunto}", "ContenidoMensaje", new { id = item.IdMensaje }, new { onclick = "LeerMensaje(this , 'hola')" }) </td>
+                                    <td> @Html.ActionLink($"{(item.Mensaje.Length > 27 ? item.Mensaje.Substring(0, 27) : item.Mensaje) }...", "ContenidoMensaje", new { id = item.IdMensaje }, new { onclick = "LeerMensaje(this , 'hola')" }) </td>
+                                    <td> @Html.ActionLink($"{item.Created_at}", "ContenidoMensaje", new { id = item.IdMensaje }, new { onclick = "LeerMensaje(this , 'hola')" }) </td>
+                                </div>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+
+
+@{ Html.RenderAction("footer"); }

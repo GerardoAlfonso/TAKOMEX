@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+
+}
+
+@{ Html.RenderAction("header"); }
+
+@{
+    String value = "";
+    if (Request.Cookies["Cookie"] != null)
+    {
+        if (Session["Rol"].ToString() == "1")
+        {
+            value = Request.Cookies["Cookie"].Value;
+        }
+        else
+        {
+            value = null;
+            Response.Redirect("Access");
+        }
+    }
+    else
+    {
+        value = null;
+        Response.Redirect("Access");
+    }
+}
+
+
+<link href="~/Content/css/admin/estilosmensajes.css" rel="stylesheet" />
+<script src="~/Content/javascript/admin/mensajes.js"></script>
+
+<!--Navegacion -->
+<div class="var">
+    <div class="navegacion">
+        <nav class="nav flex-column">
+            <a class="nav-link" href="~/Admin/Mensajes">Mensajes</a>
+            <a class="nav-link" href="#">Usuarios</a>
+            <a class="nav-link" href="#">Productos</a>
+        </nav>
+    </div>
+    <div class="contenido">
+        <div class="header">
+            <p>Detalles del mensaje</p>
+        </div>
+        @foreach (var item in ViewBag.Mensajes)
+        {
+            <div class="form-group">
+                <div class="box-mensaje d-flex">
+                    <p class="font-weight-bold mr-2">Remitente: </p><p class="text-muted"> @item.Correo</p>
+                </div>
+                <div class="box-mensaje d-flex">
+                    <p class="font-weight-bold mr-2">Asunto: </p><p class="text-muted"> @item.Asunto </p>
+                </div>
+                <div class="box-mensaje d-flex mt-3 w-75">
+                    <p>
+                        @item.Mensaje
+                    </p>
+                </div>
+                <div class="box-mensaje d-flex mt-3">
+                    <p class="text-muted">Mensaje enviado: @item.Created_at </p>
+                </div>
+            </div>
+        }
+        <a href="javascript:history.back()" class="btn btn-link btn-sm w-75">← Regresar a la bandeja de entrada</a>
+    </div>
+</div>
+
+@{ Html.RenderAction("footer"); }

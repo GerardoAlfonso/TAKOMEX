@@ -1,0 +1,16 @@
+﻿body {
+}
+
+.contenido-carrito {
+    margin-right: 4em;
+    width: 100%;
+    table-layout: fixed;
+}
+.contenido-carrito table
+{
+    width: 100%;
+}
+
+.w {
+    width: 30%;
+}
