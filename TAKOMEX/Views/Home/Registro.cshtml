@@ -39,11 +39,15 @@
 </head>
 <body class="text-center">
     <div class="home">
-        <img src="~/Content/imagenes/TAKOMEX (nav-bar).png" alt="" id="logo" onclick="location.href='indexprincipal.html';" value="Go to Home">
+        <a class="" href="~/Home/Index">
+            <img class="" src="~/Content/imagenes/TAKOMEX (nav-bar).png" alt="logo" id="logo">
+        </a>
     </div>
-    @if(ViewBag.Menssaje != null)
+    @if (ViewBag.Menssaje != null)
     {
-        <p>@ViewBag.Menssaje</p>
+        <div class="alert alert-danger w-50 container" role="alert">
+            @ViewBag.Menssaje
+        </div>
     }
     <div class="box-1">
         <div class="box-2">
@@ -56,13 +60,13 @@
                 <label for="inputEmail" class="sr-only">Correo electronico</label>
                 <input type="email" id="inputEmail" name="correo" class="form-control mb-3" placeholder="&#xf0e0 &nbsp Correo electronico" autofocus>
                 <label for="inputPhone" class="sr-only">Edad</label>
-                <input type="text" id="inputPhone" name="edad" class="form-control mb-3" placeholder="&#xf183 &nbsp Edad" autofocus>
+                <input type="number" id="edad" name="edad" class="form-control mb-3" placeholder="&#xf183 &nbsp Edad" autofocus min="16" max="99" pattern="^[0-9]+" value="16">
                 <label for="inputPhone" class="sr-only">Sexo</label>
                 <select name="sexo" class="form-control mb-3" autofocus>
                     <option value="M" class="select">Masculino</option>
                     <option value="F">Femenino</option>
                 </select>
-                
+
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password" id="inputPassword" name="password" class="form-control mb-2" placeholder="&#xf084 Contraseña">
                 <div class="checkbox mb-3 mt-2">

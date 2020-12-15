@@ -166,16 +166,7 @@
     <Compile Include="Models\Roles.cs">
       <DependentUpon>Takomex.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>Takomex.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>Takomex.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\sp_l_persona_Result.cs">
-      <DependentUpon>Takomex.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>Takomex.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Takomex.Context.cs">

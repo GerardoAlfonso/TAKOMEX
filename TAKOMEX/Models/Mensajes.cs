@@ -15,10 +15,10 @@ namespace TAKOMEX.Models
     public partial class Mensajes
     {
         public int idMensaje { get; set; }
+        public int idPersona { get; set; }
         public string Asunto { get; set; }
         public string Mensaje { get; set; }
         public int Estado { get; set; }
         public System.DateTime Created_at { get; set; }
-        public int idPersona { get; set; }
     }
 }

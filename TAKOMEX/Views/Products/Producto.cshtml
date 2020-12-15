@@ -5,58 +5,58 @@
 }
 @{ Html.RenderAction("header"); }
 
-@{
-    var item = ViewBag.Art;
-}
 <div class="container mt-5 mb-5">
-    @using (Html.BeginForm("AgregarCarrito", "Products", FormMethod.Post))
+    @foreach (var item in ViewBag.Art)
     {
-        <div class="row align-items-start">
-            <!-- Imagen de producto -->
-            <div class="col"><h3>@item.Nombre </h3><img src="@item.IMG" alt="" style="width: 90%;"></div>
-            <!-- Detalles del producto -->
-            <div class="col">
-                <table class="table">
-                    <tr>
-                        <td><label for="">Precio</label></td>
-                        <td><label for="">@item.Precio</label></td>
-                    </tr>
-                    <tr>
-                        <td><label for="">Cantidad</label></td>
-                        <td><input type="number" name="cantidad"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="">Descripcion</label></td>
-                        <td><label for="">@item.Descripcion_larga</label></td>
-                    </tr>
-                    <tr>
-                        <td><label for="">Categoria</label></td>
-                        <td><label for="">@item.IdCategoria</label></td>
-                    </tr>
-                </table>
-                <input type="text" name="id" value="@item.idArticulo" hidden/>
-                <input type="submit" name="name" value="Agregar al carrito"  class="btn btn-secondary"/>
+        using (Html.BeginForm("AgregarCarrito", "Products", FormMethod.Post))
+        {
+            <div class="row align-items-start">
+                <!-- Imagen de producto -->
+                <div class="col"><h3>@item.Nombre </h3><img src="@item.IMG" alt="" style="width: 90%;"></div>
+                <!-- Detalles del producto -->
+                <div class="col">
+                    <table class="table">
+                        <tr>
+                            <td><label for="">Precio</label></td>
+                            <td><label for="">@item.Precio</label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Cantidad</label></td>
+                            <td><input type="number" min="1" max="50" pattern="^[0-9]+" name="cantidad" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Descripcion</label></td>
+                            <td><label for="">@item.Descripcion_larga</label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Categoria</label></td>
+                            <td><label for="">@item.NombreCategoria</label></td>
+                        </tr>
+                    </table>
+                    <input type="text" name="id" value="@item.idArticulo" hidden />
+                    <input type="submit" name="name" value="Agregar al carrito" class="btn btn-secondary" />
+                </div>
+                <!-- End Detalles producto -->
             </div>
-            <!-- End Detalles producto -->
-        </div>
-        <div class="row-aling-items-center mt-3">
-            <h4>Recomendaciones</h4>
-            <div class="card-group">
-                @foreach (var rec in ViewBag.Recomendacion)
-                {
-                    <div class="card" style="width: 18rem; text-align: center;">
-                        <div class="card-body">
-                            <h5 class="card-title">@rec.Nombre</h5>
-                            <img src="@rec.IMG" alt="Alternate Text" style="width: 200px; height: auto" />
-                            <p class="card-text">@rec.Descripcion_corta</p>
-                            @Html.ActionLink("Ver mas", "Producto", "Products", new { id = rec.idArticulo }, new { @class = "btn btn-secondary" })
+            <div class="row-aling-items-center mt-3">
+                <h4>Recomendaciones</h4>
+                <div class="card-group">
+                    @foreach (var rec in ViewBag.Recomendacion)
+                    {
+                        <div class="card" style="width: 18rem; text-align: center;">
+                            <div class="card-body">
+                                <h5 class="card-title">@rec.Nombre</h5>
+                                <img src="@rec.IMG" alt="Alternate Text" style="width: 200px; height: auto" />
+                                <p class="card-text">@rec.Descripcion_corta</p>
+                                @Html.ActionLink("Ver mas", "Producto", "Products", new { id = rec.idArticulo }, new { @class = "btn btn-secondary" })
+                            </div>
                         </div>
-                    </div>
-                }
+                    }
+                </div>
             </div>
-        </div>
+        }
     }
-    </div>
+</div>
 
 
 
