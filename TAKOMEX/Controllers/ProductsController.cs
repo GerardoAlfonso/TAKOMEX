@@ -140,12 +140,52 @@ namespace TAKOMEX.Controllers
             }
         }
 
-        public object VerifyProduct(int id)
+        public List<Articulos> VerifyProduct(int id)
         {
             try
             {
                 DataBase db = new DataBase();
-                //string cook = Request.Cookies["Cookie"].Value;
+                List<Articulos> art = new List<Articulos>();
+                var a = from Articulos in db.Articulos
+                               join Categorias in db.Categorias on Articulos.IdCategoria equals Categorias.idCategoria
+                               where Articulos.idArticulo == id
+                               select new { Articulos.IdCategoria, Articulos.idArticulo, Categorias.NombreCategoria, Articulos.Nombre,
+                               Articulos.Descripcion_corta, Articulos.Descripcion_larga, Articulos.IMG, 
+                               Articulos.Precio, Articulos.Estado, Articulos.Created_at, Articulos.Updated_at
+                               };
+
+                a.ToList();
+                foreach(var lista in a)
+                {
+                    Articulos obj = new Articulos();
+                    obj.IdCategoria = lista.IdCategoria;
+                    obj.idArticulo = lista.idArticulo;
+                    obj.NombreCategoria = lista.NombreCategoria;
+                    obj.Nombre = lista.Nombre;
+                    obj.Descripcion_corta = lista.Descripcion_corta;
+                    obj.Descripcion_larga = lista.Descripcion_larga;
+                    obj.IMG = lista.IMG;
+                    obj.Precio = lista.Precio;
+                    obj.Estado = lista.Estado;
+                    obj.Created_at = lista.Created_at;
+                    obj.Updated_at = lista.Updated_at;
+                    art.Add(obj);
+                }
+
+                return art;
+            }
+            catch (Exception )
+            {
+                return null;
+            }
+        }
+        /* 
+                 public object VerifyProduct(int id)
+        {
+            try
+            {
+                DataBase db = new DataBase();
+                
                 var art = db.Articulos.FirstOrDefault(e => e.idArticulo == id);
                 //var user = db.sp_l_persona(cook).ToList();
                 idCategoria = art.IdCategoria;
@@ -156,6 +196,7 @@ namespace TAKOMEX.Controllers
                 return null;
             }
         }
+         */
         public object VerifyRecommendation(int id)
         {
             try

@@ -21,10 +21,10 @@ namespace TAKOMEX.Models
         }
     
         public int idCategoria { get; set; }
+        public string NombreCategoria { get; set; }
         public int Estado { get; set; }
         public System.DateTime Created_at { get; set; }
         public System.DateTime Updated_at { get; set; }
-        public string NombreCategoria { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Inventario> Inventario { get; set; }

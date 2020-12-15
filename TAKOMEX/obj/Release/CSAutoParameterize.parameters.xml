@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="TakomexEntities-Web.config Connection String" description="TakomexEntities Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="metadata=res://*/Models.Login.csdl|res://*/Models.Login.ssdl|res://*/Models.Login.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=localhost;initial catalog=Takomex;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\gerar\\source\\repos\\TAKOMEX\\TAKOMEX\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='TakomexEntities']/@connectionString" />
+  </parameter>
+  <parameter name="DataBase-Web.config Connection String" description="DataBase Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="metadata=res://*/Models.Takomex.csdl|res://*/Models.Takomex.ssdl|res://*/Models.Takomex.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=localhost;initial catalog=Takomex;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\gerar\\source\\repos\\TAKOMEX\\TAKOMEX\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DataBase']/@connectionString" />
+  </parameter>
+</parameters>

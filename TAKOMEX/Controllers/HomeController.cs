@@ -94,8 +94,12 @@ namespace TAKOMEX.Controllers
         }
 
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult Login(int? a)
         {
+            if(a != null)
+            {
+                ViewBag.Mensaje = "Debe iniciar sesion para continuar.";
+            }
             return View();
         }
 
@@ -182,7 +186,7 @@ namespace TAKOMEX.Controllers
                 }else
                 {
                     DataBase db = new DataBase();
-                    db.sp_i_Personas(1, nombre, apellido, Convert.ToInt32(edad), correo, sexo, password, 4);
+                    db.sp_i_Personas(1, nombre, apellido, Convert.ToInt32(edad), correo, sexo, password, 1);
 
                     var user = db.Persona.FirstOrDefault(e => e.Correo == correo && e.Contraseña == password);
                     //User Found
@@ -196,6 +200,7 @@ namespace TAKOMEX.Controllers
                         {
                             HttpCookie cook = new HttpCookie("Cookie", user.Correo);
                             cook.Expires = DateTime.Now.AddMinutes(30);
+                            Session["Rol"] = user.idRol;
                             Response.Cookies.Add(cook);
                         }
                         return RedirectToAction("Index");

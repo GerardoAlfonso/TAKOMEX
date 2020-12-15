@@ -5,7 +5,24 @@
 }
 
 @{ Html.RenderAction("header"); }
+<style>
+    html {
+        min-height: 100%;
+        position: relative;
+    }
 
+    body {
+        margin: 0;
+    }
+
+    footer {
+        background-color: black;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        color: white;
+    }
+</style>
 
 
 <!-- Slider indicadores o carrusel Primera seccion-->

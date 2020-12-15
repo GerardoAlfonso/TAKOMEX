@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_A6BF45_BrendaMarcelaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Articulos">
+    <Key>
+      <PropertyRef Name="idArticulo" />
+    </Key>
+    <Property Name="idArticulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdCategoria" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion_corta" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion_larga" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="IMG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Precio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="Int32" />
+    <Property Name="Created_at" Type="DateTime" Precision="3" />
+    <Property Name="Updated_at" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Categorias">
+    <Key>
+      <PropertyRef Name="idCategoria" />
+    </Key>
+    <Property Name="idCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreCategoria" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <Property Name="Created_at" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated_at" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="idEmpleado" />
+    </Key>
+    <Property Name="idEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPersona" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Inventario">
+    <Key>
+      <PropertyRef Name="idInventario" />
+    </Key>
+    <Property Name="idInventario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idArticulo" Type="Int32" Nullable="false" />
+    <Property Name="IdCategoria" Type="Int32" Nullable="false" />
+    <Property Name="Existencias" Type="Int32" Nullable="false" />
+    <Property Name="Created_at" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated_at" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Mensajes">
+    <Key>
+      <PropertyRef Name="idMensaje" />
+    </Key>
+    <Property Name="idMensaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPersona" Type="Int32" Nullable="false" />
+    <Property Name="Asunto" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Mensaje" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <Property Name="Created_at" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="IdPersona" />
+    </Key>
+    <Property Name="IdPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idRol" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Edad" Type="Int32" Nullable="false" />
+    <Property Name="Correo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Sexo" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Contraseña" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <Property Name="Created_at" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated_at" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="idRol" />
+    </Key>
+    <Property Name="idRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreRol" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Created_at" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated_at" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPersona" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Ventas">
+    <Key>
+      <PropertyRef Name="idVenta" />
+    </Key>
+    <Property Name="idVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idUsuario" Type="Int32" Nullable="false" />
+    <Property Name="Detalles" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Importe" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SubTotal" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IVA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Total" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fecha" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Created_at" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated_at" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="DB_A6BF45_BrendaMarcelaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Articulos" EntityType="Self.Articulos" />
+    <EntitySet Name="Categorias" EntityType="Self.Categorias" />
+    <EntitySet Name="Empleado" EntityType="Self.Empleado" />
+    <EntitySet Name="Inventario" EntityType="Self.Inventario" />
+    <EntitySet Name="Mensajes" EntityType="Self.Mensajes" />
+    <EntitySet Name="Persona" EntityType="Self.Persona" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <EntitySet Name="Ventas" EntityType="Self.Ventas" />
+    <FunctionImport Name="sp_e_Personas">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_i_empleado">
+      <Parameter Name="idPersona" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_i_mensaje">
+      <Parameter Name="IdPersona" Mode="In" Type="Int32" />
+      <Parameter Name="Asunto" Mode="In" Type="String" />
+      <Parameter Name="Mensaje" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_i_Personas">
+      <Parameter Name="idRol" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido" Mode="In" Type="String" />
+      <Parameter Name="Edad" Mode="In" Type="Int32" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="Sexo" Mode="In" Type="String" />
+      <Parameter Name="Contraseña" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_i_Roles">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_i_usuario">
+      <Parameter Name="idPersona" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_i_venta">
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="Detalles" Mode="In" Type="String" />
+      <Parameter Name="Importe" Mode="In" Type="String" />
+      <Parameter Name="IVA" Mode="In" Type="String" />
+      <Parameter Name="Total" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_l_persona" ReturnType="Collection(DB_A6BF45_BrendaMarcelaModel.sp_l_persona_Result)">
+      <Parameter Name="Correo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_u_mensajes">
+      <Parameter Name="IdMensaje" Mode="In" Type="Int32" />
+      <Parameter Name="Estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_u_Personas">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido" Mode="In" Type="String" />
+      <Parameter Name="Edad" Mode="In" Type="Int32" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="Sexo" Mode="In" Type="String" />
+      <Parameter Name="Contraseña" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_u_Roles">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_l_persona_Result">
+    <Property Type="Int32" Name="IdPersona" Nullable="false" />
+    <Property Type="Int32" Name="idRol" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Apellido" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="Edad" Nullable="false" />
+    <Property Type="String" Name="Correo" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="Sexo" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Contraseña" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Estado" Nullable="false" />
+    <Property Type="DateTime" Name="Created_at" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="Updated_at" Nullable="false" Precision="23" />
+  </ComplexType>
+</Schema>

@@ -201,7 +201,6 @@ namespace TAKOMEX.Controllers
             List<int> cant = (List<int>)Session["Cantidad"];
             List<Articulos> prod = BuscarProducto(list);
             String detalles = "";
-            double subtotal = 0;
             int contador = 0;
             if(prod.Count() == 1)
             {
@@ -229,7 +228,16 @@ namespace TAKOMEX.Controllers
             string idUsuario = Convert.ToString(p.IdPersona);
 
             db.sp_i_venta(Convert.ToInt32(idUsuario), detalles, Convert.ToString(Convert.ToDouble(total) - iva) , Convert.ToString(iva), total );
-            Session.Clear();
+            Session["email"] = null;
+            Session["telefono"] = null;
+            Session["direccion"] = null;
+            Session["facturacion"] = null;
+            Session["Productos"] = null;
+            Session["Cantidad"] = null;
+            Session["lista"] = null;
+            Session["Restaurante"] = null;
+            Session["TipoPago"] = null;
+            //Session.Clear();
             //Session.Abandon();
             Session["Compra"] = "OK";
             return RedirectToAction("OK" , "Products");
@@ -245,7 +253,8 @@ namespace TAKOMEX.Controllers
         }
         public ActionResult Access()
         {
-            return View();
+            int a = 1;
+            return RedirectToAction("Login", "Home", new { a } );
         }
         [HandleError]
         public ActionResult Lost()
