@@ -4,19 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a995e2402ca54924a34451d137d280fc" Name="Diagram1">
-        <EntityTypeShape EntityType="Models.Articulos" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Models.Categorias" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Models.Empleado" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Models.Inventario" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Models.Persona" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Models.Roles" Width="1.5" PointX="4.875" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Models.Usuario" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Models.Ventas" Width="1.5" PointX="6.75" PointY="2.5" IsExpanded="true" />
-        <AssociationConnector Association="Models.idPersona" ManuallyRouted="false" />
-        <AssociationConnector Association="Models.FK__Inventari__IdCat__47DBAE45" />
-        <EntityTypeShape EntityType="Models.Mensajes" Width="1.5" PointX="8.625" PointY="0.75" />
-        <EntityTypeShape EntityType="Models.sysdiagrams" Width="1.5" PointX="8.625" PointY="3.125" />
+      <Diagram DiagramId="c9e0ea0d5ea1406bafd79a89f9069fc2" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Articulos" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Categorias" Width="1.5" PointX="2.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Empleado" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Inventario" Width="1.5" PointX="5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Mensajes" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Persona" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Roles" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Usuario" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Ventas" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK__Inventari__IdCat__07C12930" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.idPersona" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
